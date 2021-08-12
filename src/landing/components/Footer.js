@@ -1,11 +1,11 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import logo from "../../assets/images/logo.svg";
+import Logo from "../../assets/components/Logo";
 
 const Footer = () => {
   return (
     <footer className="footer">
       <div className="footer__section footer__section--xl">
-        <img src={logo} alt="versus bet logo" />
+        <Logo />
         <p className="footer__section-copy">
           Visitanos en nuestras redes sociales
         </p>

@@ -1,9 +1,9 @@
-import logo from "../../assets/images/logo.svg";
+import Logo from "../../assets/components/Logo";
 
 const Header = () => {
   return (
     <header className="header header--landing">
-      <img src={logo} className="header__logo" alt="versus bet logo" />
+      <Logo classStyle="header__logo" />
       <nav className="header__nav">
         <ul>
           <li className="header__nav-link">
