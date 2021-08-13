@@ -2,6 +2,7 @@ import Logo from "../../components/Logo";
 import useCustomForm from "../../hooks/useCustomForm";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
+import registerUser from "../../services/registerUser";
 
 const hints = {
   phone:
@@ -10,7 +11,7 @@ const hints = {
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
-  password: yup.string().required(),
+  password: yup.string().min(8).required(),
   name: yup.string().required(),
   lastname: yup.string().required(),
   phone: yup
@@ -24,17 +25,7 @@ const Register = () => {
   const { register, handleSubmit, errors } = useCustomForm(schema);
 
   const onSubmit = (data) => {
-    console.log(data);
-    const URL = process.env.REACT_APP_API_URL;
-
-    fetch(`${URL}/register`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(data),
-    })
-      .then((response) => response.json())
+    registerUser(data)
       .then((response) => console.log(response))
       .catch((error) => console.log(error));
   };
