@@ -3,12 +3,21 @@ import useCustomForm from "../../hooks/useCustomForm";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
 
+const hints = {
+  phone:
+    "Un número de teléfono válido tiene 10 dígitos: 2, 3 o 4 para el código de área y 8, 7, 6 respectivamente para el número.",
+};
+
 const schema = yup.object().shape({
   email: yup.string().email().required(),
   password: yup.string().required(),
   name: yup.string().required(),
   lastname: yup.string().required(),
-  phone: yup.number(),
+  phone: yup
+    .string()
+    // .matches(/[0-9]{2}(\s|-)[0-9]{8}/i)
+    .matches(/(?<!\d)\d{10}(?!\d)/i, "Ingresá un número de teléfono válido."),
+  // .matches(/[0-9]{4}(\s|-)[0-9]{6}/i),
 });
 
 const Register = () => {
@@ -63,12 +72,21 @@ const Register = () => {
           </div>
 
           <div className="form__input-group">
-            <div className="form__input-group">
-              <label htmlFor="number">
+            <div
+              className="form__input-group form__input-group--with-tooltip"
+              data-tooltip={hints.phone}
+              autoComplete="off"
+            >
+              <label htmlFor="phone">
                 Número de teléfono <em>(opcional)</em>
               </label>
-              <input type="tel" name="phone" {...register("phone")} />
-              <small>{errors.password?.message}</small>
+              <input
+                title={hints.phone}
+                type="tel"
+                name="phone"
+                {...register("phone")}
+              />
+              <small>{errors.phone?.message}</small>
             </div>
           </div>
 

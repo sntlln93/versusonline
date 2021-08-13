@@ -38,6 +38,26 @@ body {
 
 /* components */
 
+/* tooltip */
+
+.form__input-group--with-tooltip {
+  position: relative;
+}
+
+.form__input-group--with-tooltip:focus-within::before {
+  content: attr(data-tooltip);
+  position: absolute;
+  padding: 1rem;
+  border-radius: var(--border-radius);
+  border: 1px solid var(--transparent-border-color);
+  top: -4rem;
+  background-color: var(--secondary-color-alt);
+  color: var(--terciary-color);
+  font-weight: normal;
+  font-size: 0.8em;
+  display: inline-block;
+}
+
 /* searchbar */
 
 .search {
@@ -159,7 +179,7 @@ body {
 }
 
 .form__input-group > label {
-  font-size: 12px;
+  font-size: 1.1rem;
 }
 
 .form__input-group > input[type="number"] {
@@ -175,14 +195,16 @@ body {
 .form__input-group > input[type="email"],
 .form__input-group > input[type="text"],
 .form__input-group > input[type="number"],
+.form__input-group > input[type="tel"],
 .form__input-group > input[type="password"] {
   color: var(--terciary-color);
   border: 0;
   border-bottom: 1px solid gray;
   outline: none;
   background-color: var(--secondary-color);
-  padding: 0.3em 0.5em;
-  font-size: 20px;
+  padding: 0.3rem 0.5rem;
+  font-size: 1.2rem;
+  margin-bottom: 0.8rem;
 }
 
 .form__input-group > small {
