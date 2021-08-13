@@ -13,8 +13,8 @@ const Login = () => {
 
   const onSubmit = (data) => {
     console.log(data);
-    const URL = process.env.REACT_APP_API_URL + "/api";
-    /*login request using fetch*/
+    const URL = process.env.REACT_APP_API_URL;
+
     fetch(`${URL}/login`, {
       method: "POST",
       headers: {
