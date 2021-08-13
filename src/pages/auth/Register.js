@@ -1,0 +1,92 @@
+import Logo from "../../components/Logo";
+import useCustomForm from "../../hooks/useCustomForm";
+import * as yup from "yup";
+import { Link } from "react-router-dom";
+
+const schema = yup.object().shape({
+  email: yup.string().email().required(),
+  password: yup.string().required(),
+  name: yup.string().required(),
+  lastname: yup.string().required(),
+  phone: yup.number(),
+});
+
+const Register = () => {
+  const { register, handleSubmit, errors } = useCustomForm(schema);
+
+  const onSubmit = (data) => {
+    console.log(data);
+    const URL = process.env.REACT_APP_API_URL + "/api";
+    /*login request using fetch*/
+    fetch(`${URL}/register`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(data),
+    })
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((error) => console.log(error));
+  };
+
+  return (
+    <main>
+      <div className="form">
+        <div className="form__brand">
+          <Logo />
+        </div>
+
+        <form onSubmit={handleSubmit(onSubmit)} noValidate>
+          <div className="form__input-group">
+            <label htmlFor="email">Correo electrónico</label>
+            <input type="text" name="email" {...register("email")} />
+            <small>{errors.email?.message}</small>
+          </div>
+
+          <div className="form__input-group">
+            <label htmlFor="name">Nombre</label>
+            <input type="text" name="name" {...register("name")} />
+            <small>{errors.name?.message}</small>
+          </div>
+
+          <div className="form__input-group">
+            <label htmlFor="lastname">Apellido</label>
+            <input type="text" name="lastname" {...register("lastname")} />
+            <small>{errors.lastname?.message}</small>
+          </div>
+
+          <div className="form__input-group">
+            <label htmlFor="password">Contraseña</label>
+            <input type="password" name="password" {...register("password")} />
+            <small>{errors.password?.message}</small>
+          </div>
+
+          <div className="form__input-group">
+            <div className="form__input-group">
+              <label htmlFor="number">
+                Número de teléfono <em>(opcional)</em>
+              </label>
+              <input type="tel" name="phone" {...register("phone")} />
+              <small>{errors.password?.message}</small>
+            </div>
+          </div>
+
+          <div className="form__input-group">
+            <button className="btn" type="submit">
+              Registrar
+            </button>
+            <span>
+              ¿Ya tenés una cuenta?&nbsp;
+              <Link to="login" className="create-account">
+                Ingresá desde acá
+              </Link>
+            </span>
+          </div>
+        </form>
+      </div>
+    </main>
+  );
+};
+
+export default Register;
