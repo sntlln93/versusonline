@@ -1,8 +1,8 @@
-import Logo from "../../components/Logo";
-import useCustomForm from "../../hooks/useCustomForm";
+import Logo from "components/Logo";
+import useCustomForm from "hooks/useCustomForm";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
-import registerUser from "../../services/registerUser";
+import { useAuth } from "hooks/useAuth";
 
 const hints = {
   phone:
@@ -14,21 +14,14 @@ const schema = yup.object().shape({
   password: yup.string().min(8).required(),
   name: yup.string().required(),
   lastname: yup.string().required(),
-  phone: yup
-    .string()
-    // .matches(/[0-9]{2}(\s|-)[0-9]{8}/i)
-    .matches(/(?<!\d)\d{10}(?!\d)/i, "Ingresá un número de teléfono válido."),
-  // .matches(/[0-9]{4}(\s|-)[0-9]{6}/i),
+  phone: yup.string().nullable(),
 });
 
 const Register = () => {
   const { register, handleSubmit, errors } = useCustomForm(schema);
+  const auth = useAuth();
 
-  const onSubmit = (data) => {
-    registerUser(data)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
-  };
+  const onSubmit = (data) => auth.signup(data);
 
   return (
     <main>

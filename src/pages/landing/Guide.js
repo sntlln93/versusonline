@@ -1,6 +1,6 @@
-import guide1 from "../../assets/images/guide1.png";
-import guide2 from "../../assets/images/guide2.png";
-import guide3 from "../../assets/images/guide3.png";
+import guide1 from "assets/images/guide1.png";
+import guide2 from "assets/images/guide2.png";
+import guide3 from "assets/images/guide3.png";
 
 const Guide = () => {
   return (

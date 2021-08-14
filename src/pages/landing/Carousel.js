@@ -1,5 +1,5 @@
-import { ButtonLink } from "../../components/Button";
-import useSlider from "./hooks/useSlider";
+import { ButtonLink } from "components/Button";
+import useSlider from "hooks/useSlider";
 
 const images = [
   "https://picsum.photos/id/135/600/300",

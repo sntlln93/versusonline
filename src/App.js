@@ -5,6 +5,8 @@ import Landing from "./pages/landing";
 import Login from "./pages/auth/Login";
 import Home from "./pages/home";
 import Register from "./pages/auth/Register";
+import { AuthProvider } from "hooks/useAuth";
+import { NotificationProvider } from "hooks/useNotification";
 
 initFontAwesome();
 
@@ -15,18 +17,22 @@ function App() {
         <Route exact path="/">
           <Landing />
         </Route>
-        <Route exact path="/login">
-          <Login />
-        </Route>
-        <Route path="/home">
-          <Home />
-        </Route>
-        <Route path="/register">
-          <Register />
-        </Route>
-        {/*<Route path="/">
+        <NotificationProvider>
+          <AuthProvider>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route path="/home">
+              <Home />
+            </Route>
+            <Route path="/register">
+              <Register />
+            </Route>
+            {/*<Route path="/">
           <Home />
         </Route> */}
+          </AuthProvider>
+        </NotificationProvider>
       </Switch>
     </Router>
   );

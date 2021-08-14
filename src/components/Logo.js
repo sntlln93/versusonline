@@ -1,4 +1,4 @@
-import logo from "../assets/images/logo.svg";
+import logo from "assets/images/logo.svg";
 
 const Logo = ({ classStyle }) => {
   return <img src={logo} className={classStyle} alt="versus bet logo" />;

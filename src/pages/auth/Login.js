@@ -1,8 +1,8 @@
-import Logo from "../../components/Logo";
-import useCustomForm from "../../hooks/useCustomForm";
+import Logo from "components/Logo";
+import useCustomForm from "hooks/useCustomForm";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
-import authenticateUser from "src/services/authenticateUser";
+import { useAuth } from "hooks/useAuth";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -11,13 +11,9 @@ const schema = yup.object().shape({
 
 const Login = () => {
   const { register, handleSubmit, errors } = useCustomForm(schema);
+  const auth = useAuth();
 
-  const onSubmit = (data) => {
-    authenticateUser(data)
-      .then((response) => console.log(response))
-      .catch((error) => console.log(error));
-  };
-
+  const onSubmit = (data) => auth.login(data);
   return (
     <main>
       <div className="form">
