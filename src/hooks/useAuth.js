@@ -1,6 +1,7 @@
 import { useState, useEffect, useContext, createContext } from "react";
 import { useNotification } from "hooks/useNotification";
 import axios from "axios";
+import { useHistory } from "react-router-dom";
 
 const URL = process.env.REACT_APP_API_URL;
 const authContext = createContext();
@@ -17,6 +18,13 @@ export const useAuth = () => {
 const useAuthProvider = () => {
   const [user, setUser] = useState(null);
   const notification = useNotification();
+  let history = useHistory();
+
+  const storeUser = (response) => {
+    setUser(JSON.stringify(response.data));
+    localStorage.setItem("user", JSON.stringify(response.data));
+    history.push("/home");
+  };
 
   useEffect(() => {
     if (localStorage.getItem("user")) {
@@ -27,10 +35,7 @@ const useAuthProvider = () => {
   const login = (data) => {
     axios
       .post(`${URL}/login`, data)
-      .then((response) => {
-        setUser(JSON.stringify(response.data));
-        localStorage.setItem("user", JSON.stringify(response.data));
-      })
+      .then((response) => storeUser(response))
       .catch((error) => {
         notification.add([
           {
@@ -44,10 +49,7 @@ const useAuthProvider = () => {
   const signup = (data) => {
     axios
       .post(`${URL}/register`, data)
-      .then((response) => {
-        setUser(JSON.stringify(response.data));
-        localStorage.setItem("user", JSON.stringify(response.data));
-      })
+      .then((response) => storeUser(response))
       .catch((error) => {
         const errors = Object.values(error.response.data.messages).map(
           (error) => {
@@ -61,11 +63,12 @@ const useAuthProvider = () => {
   const signout = () => {
     setUser(null);
     localStorage.removeItem("user");
+    history.push("/");
   };
 
-  const isLoggedin = () => {
+  const isAuthenticated = () => {
     return localStorage.getItem("user") ? true : false;
   };
 
-  return { user, login, signup, signout, isLoggedin };
+  return { user, login, signup, signout, isAuthenticated };
 };

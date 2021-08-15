@@ -464,7 +464,8 @@ body {
 
 /* header */
 .header {
-  overflow: hidden;
+  /*need to fix overflowing when toggling searchbar*/
+  /* overflow: hidden;  */
   position: sticky;
   z-index: 111;
   top: 0;
@@ -497,12 +498,94 @@ body {
   align-items: center;
 }
 
+summary {
+  position: relative;
+}
+
+details[open] > .header__menu {
+  background-color: var(--secondary-color-alt);
+  box-shadow: var(--cool-shadow-alternative);
+  position: absolute;
+  border-radius: var(--border-radius);
+  bottom: 0;
+  right: 3rem;
+  transform: translateY(100%);
+  padding-block: 1rem;
+}
+
+details[open] .header__icon {
+  transform: rotate(180deg);
+}
+
+.header__menu > .header__user {
+  padding: 0.5rem 1rem;
+}
+
+.header__menu ul {
+  list-style: none;
+}
+
+.header__menu ul li {
+  padding: 0.5rem 1rem;
+}
+
+.header__menu ul li:hover {
+  background-color: var(--primary-color);
+}
+
+.header__menu ul li:hover > * {
+  color: var(--secondary-color);
+}
+
+.header__menu > hr {
+  border: 1px solid var(--transparent-border-color);
+  margin-block: 1rem;
+}
+
+.header__menu ul > li > * > svg {
+  margin-right: 1rem;
+}
+
+.header__menu ul > li > * {
+  cursor: pointer;
+  color: var(--terciary-color);
+  text-decoration: none;
+}
+
+summary {
+  display: flex;
+}
+
+summary * {
+  user-select: none;
+}
+
+summary ~ .header__menu {
+  animation: sweep 500ms ease-in-out;
+}
+
+@keyframes sweep {
+  from {
+    opacity: 0;
+    transform: translateY(60%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(100%);
+  }
+}
+
 .header__user {
   margin-left: 1rem;
   align-self: flex-start;
   display: flex;
   flex-direction: column;
   text-align: right;
+}
+
+.header__user.hide-desktop {
+  text-align: left;
+  margin-left: 0;
 }
 
 .header__icon {
@@ -538,9 +621,15 @@ body {
   width: var(--size);
   height: var(--size);
   border: 2px solid var(--primary-color);
+  cursor: pointer;
 }
 
-.header__icon-user > i {
+.header__icon-user:hover {
+  background-color: var(--primary-color);
+  color: var(--secondary-color-alt);
+}
+
+.header__icon-user > svg {
   font-size: 1.5em;
 }
 
@@ -941,6 +1030,7 @@ body {
   cursor: pointer;
   padding: 1rem;
   border-radius: var(--border-radius);
+  margin-bottom: 5px;
 }
 
 .sidebar__element:hover,
@@ -953,7 +1043,7 @@ body {
   text-decoration: none;
 }
 
-.sidebar__element a i {
+.sidebar__element > svg {
   margin-right: 1rem;
 }
 
@@ -1229,6 +1319,7 @@ body {
   .sidebar__element {
     border-radius: 0;
     text-align: center;
+    margin-bottom: 0;
   }
 
   .sidebar__logo {

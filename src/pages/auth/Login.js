@@ -3,6 +3,7 @@ import useCustomForm from "hooks/useCustomForm";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
 import { useAuth } from "hooks/useAuth";
+import { Redirect } from "react-router-dom";
 
 const schema = yup.object().shape({
   email: yup.string().email().required(),
@@ -12,6 +13,10 @@ const schema = yup.object().shape({
 const Login = () => {
   const { register, handleSubmit, errors } = useCustomForm(schema);
   const auth = useAuth();
+
+  if (auth.isAuthenticated()) {
+    return <Redirect to="/home" />;
+  }
 
   const onSubmit = (data) => auth.login(data);
   return (

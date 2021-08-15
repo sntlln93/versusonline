@@ -3,6 +3,7 @@ import useCustomForm from "hooks/useCustomForm";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
 import { useAuth } from "hooks/useAuth";
+import { Redirect } from "react-router-dom";
 
 const hints = {
   phone:
@@ -20,6 +21,10 @@ const schema = yup.object().shape({
 const Register = () => {
   const { register, handleSubmit, errors } = useCustomForm(schema);
   const auth = useAuth();
+
+  if (auth.isAuthenticated()) {
+    return <Redirect to="/home" />;
+  }
 
   const onSubmit = (data) => auth.signup(data);
 

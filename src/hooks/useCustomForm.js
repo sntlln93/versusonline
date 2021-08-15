@@ -8,7 +8,7 @@ setLocale({
   },
   string: {
     email: "Ingresá un email válido",
-    min: "La contraseña debe tener al menos ${min} caracteres",
+    min: "Ingresá un valor mayor o igual a {min}",
   },
 });
 
