@@ -1,7 +1,5 @@
 import { useState, useEffect } from "react";
-import axios from "axios";
-
-const URL = process.env.REACT_APP_API_URL;
+import fetcher from "services/fetcher";
 
 const useCompetitions = () => {
   const [regions, setRegions] = useState([]);
@@ -11,8 +9,8 @@ const useCompetitions = () => {
   const [games, setGames] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`${URL}/competitions`)
+    fetcher
+      .get("/competitions")
       .then((response) => {
         setRegions(response.data.regions);
         setSelectedRegionId(response.data.regions[0].id);

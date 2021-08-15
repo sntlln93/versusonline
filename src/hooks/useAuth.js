@@ -1,9 +1,8 @@
 import { useState, useEffect, useContext, createContext } from "react";
 import { useNotification } from "hooks/useNotification";
-import axios from "axios";
 import { useHistory } from "react-router-dom";
+import fetcher from "services/fetcher";
 
-const URL = process.env.REACT_APP_API_URL;
 const authContext = createContext();
 
 export function AuthProvider({ children }) {
@@ -33,8 +32,8 @@ const useAuthProvider = () => {
   }, []);
 
   const login = (data) => {
-    axios
-      .post(`${URL}/login`, data)
+    fetcher
+      .post("login", data)
       .then((response) => storeUser(response))
       .catch((error) => {
         notification.add([
@@ -47,8 +46,8 @@ const useAuthProvider = () => {
   };
 
   const signup = (data) => {
-    axios
-      .post(`${URL}/register`, data)
+    fetcher
+      .post("register", data)
       .then((response) => storeUser(response))
       .catch((error) => {
         const errors = Object.values(error.response.data.messages).map(
