@@ -17,23 +17,23 @@ const History = () => {
       <main>
         <Header />
         <div className="content">
-          <section class="history">
+          <section className="history">
             <h2>Movimientos</h2>
 
-            <ul class="history__details">
+            <ul className="history__details">
               <li>
                 <img
                   alt="detail"
                   src="../assets/images/leagues/conmebol.svg"
-                  class="history__detail-image"
+                  className="history__detail-image"
                 />
-                <div class="history__detail">
-                  <span class="history__detail-description">
+                <div className="history__detail">
+                  <span className="history__detail-description">
                     Boca Jrs. vs Racing Club
                   </span>
-                  <span class="history__detail-date">Ayer</span>
+                  <span className="history__detail-date">Ayer</span>
                 </div>
-                <span class="history__amount history__amount--positive">
+                <span className="history__amount history__amount--positive">
                   1100
                 </span>
               </li>
@@ -42,15 +42,15 @@ const History = () => {
                 <img
                   alt="detail"
                   src="../assets/images/leagues/conmebol.svg"
-                  class="history__detail-image"
+                  className="history__detail-image"
                 />
-                <div class="history__detail">
-                  <span class="history__detail-description">
+                <div className="history__detail">
+                  <span className="history__detail-description">
                     Cargaste créditos
                   </span>
-                  <span class="history__detail-date">Ayer</span>
+                  <span className="history__detail-date">Ayer</span>
                 </div>
-                <span class="history__amount history__amount--positive">
+                <span className="history__amount history__amount--positive">
                   1100
                 </span>
               </li>
@@ -59,15 +59,15 @@ const History = () => {
                 <img
                   alt="detail"
                   src="../assets/images/leagues/conmebol.svg"
-                  class="history__detail-image"
+                  className="history__detail-image"
                 />
-                <div class="history__detail">
-                  <span class="history__detail-description">
+                <div className="history__detail">
+                  <span className="history__detail-description">
                     River Plate vs Central Córdoba
                   </span>
-                  <span class="history__detail-date">Ayer</span>
+                  <span className="history__detail-date">Ayer</span>
                 </div>
-                <span class="history__amount history__amount--negative">
+                <span className="history__amount history__amount--negative">
                   1100
                 </span>
               </li>

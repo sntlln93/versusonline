@@ -36,9 +36,14 @@ const useAuthProvider = () => {
       .post("login", data)
       .then((response) => storeUser(response))
       .catch((error) => {
+        const message =
+          error.response.status >= 500
+            ? "Algo salió mal"
+            : error.response.data.message;
+
         notification.add([
           {
-            message: error.response.data.message,
+            message: message,
             type: "error",
           },
         ]);
@@ -48,7 +53,15 @@ const useAuthProvider = () => {
   const signup = (data) => {
     fetcher
       .post("register", data)
-      .then((response) => storeUser(response))
+      .then((response) => {
+        storeUser(response);
+        notification.add([
+          {
+            message: `¡Bienvenido, ${response.data.name}`,
+            type: "success",
+          },
+        ]);
+      })
       .catch((error) => {
         const errors = Object.values(error.response.data.messages).map(
           (error) => {
@@ -60,9 +73,15 @@ const useAuthProvider = () => {
   };
 
   const signout = () => {
-    setUser(null);
-    localStorage.removeItem("user");
-    history.push("/");
+    fetcher
+      .post("logout")
+      .then((response) => {
+        setUser(null);
+        localStorage.removeItem("user");
+        history.push("/");
+        console.log(response.data.message);
+      })
+      .catch((error) => console.log(error.response.data.message));
   };
 
   const isAuthenticated = () => {

@@ -11,6 +11,7 @@ import { useAuth } from "hooks/useAuth";
 
 const Header = () => {
   const auth = useAuth();
+  const username = auth.user ? auth.user.name : "";
 
   return (
     <header className="header">
@@ -30,7 +31,7 @@ const Header = () => {
         <details>
           <summary>
             <div className="header__user hide-mobile">
-              <span>CLEGUIZAMON </span>
+              <span>{username}</span>
               <span>10.487 créditos</span>
             </div>
             <div className="header__icon hide-mobile">
