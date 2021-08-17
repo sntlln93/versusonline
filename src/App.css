@@ -1286,6 +1286,16 @@ summary ~ .header__menu {
   display: none;
 }
 
+*::-webkit-scrollbar {
+  width: 0.25rem;
+}
+*::-webkit-scrollbar-track {
+  background-color: hsl(0, 0%, 12%);
+}
+*::-webkit-scrollbar-thumb {
+  background-color: hsl(0, 0%, 30%);
+}
+
 @media screen and (max-width: 768px) {
   .hide-mobile {
     display: none;
@@ -1303,8 +1313,8 @@ summary ~ .header__menu {
     display: block;
   }
   .dashboard .sidebar {
+    position: fixed;
     padding: 0;
-    position: absolute;
     width: 100%;
     bottom: 0;
   }
