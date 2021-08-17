@@ -1,7 +1,7 @@
-import useCompetitions from "hooks/useCompetitions";
+import { useBets } from "contexts/Bets";
 
 const Bets = () => {
-  const [
+  const {
     regions,
     tournaments,
     games,
@@ -9,7 +9,16 @@ const Bets = () => {
     selectedTournamentId,
     handleChangeRegion,
     handleChangeTournament,
-  ] = useCompetitions();
+    handleAddToCoupon,
+  } = useBets();
+
+  const handleQuotaSelected = (game, option) => {
+    const toBeAdded = {
+      game: { ...game },
+      selected: { ...option },
+    };
+    handleAddToCoupon(toBeAdded);
+  };
 
   return (
     <section className="bets">
@@ -20,6 +29,7 @@ const Bets = () => {
           regions.map((region) => {
             return (
               <div
+                onClick={() => handleChangeRegion(region.id)}
                 key={region.id}
                 className={
                   region.id === selectedRegionId
@@ -27,7 +37,7 @@ const Bets = () => {
                     : "leagues__league"
                 }
               >
-                <div onClick={() => handleChangeRegion(region.id)}>
+                <div>
                   <img src={region.logo} alt={region.name} />
                 </div>
               </div>
@@ -66,17 +76,26 @@ const Bets = () => {
                 <div className="games__game" key={game.id}>
                   <form action="">
                     <h3>{`${game.local.name} vs ${game.away.name}`}</h3>
-                    <div className="game__date">{`${game.date} a las ${game.time}`}</div>
+                    <div className="game__date">{game.date}</div>
                     <div className="game__odds">
-                      <div className="game__odds-odd game__odds-odd--selected">
+                      <div
+                        className="game__odds-odd"
+                        onClick={() => handleQuotaSelected(game, game.local)}
+                      >
                         <span>{game.local.name}</span>
                         <span>{game.local.quota}</span>
                       </div>
-                      <div className="game__odds-odd">
+                      <div
+                        className="game__odds-odd"
+                        onClick={() => handleQuotaSelected(game, game.tie)}
+                      >
                         <span>{game.tie.name}</span>
                         <span>{game.tie.quota}</span>
                       </div>
-                      <div className="game__odds-odd">
+                      <div
+                        className="game__odds-odd"
+                        onClick={() => handleQuotaSelected(game, game.away)}
+                      >
                         <span>{game.away.name}</span>
                         <span>{game.away.quota}</span>
                       </div>
