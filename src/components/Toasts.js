@@ -1,4 +1,4 @@
-import { useNotification } from "hooks/useNotification";
+import { useNotification } from "contexts/Notifications";
 
 const Toasts = ({ messages }) => {
   const notification = useNotification();

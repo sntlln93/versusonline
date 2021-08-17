@@ -2,7 +2,7 @@ import Coupon from "components/Coupon";
 import Sidebar from "components/Sidebar";
 import Header from "components/Header";
 import Bets from "./Bets";
-import { useAuth } from "hooks/useAuth";
+import { useAuth } from "contexts/Auth";
 import { Redirect } from "react-router-dom";
 
 const Home = () => {

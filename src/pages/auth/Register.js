@@ -2,7 +2,7 @@ import Logo from "components/Logo";
 import useCustomForm from "hooks/useCustomForm";
 import * as yup from "yup";
 import { Link } from "react-router-dom";
-import { useAuth } from "hooks/useAuth";
+import { useAuth } from "contexts/Auth";
 import { Redirect } from "react-router-dom";
 
 const hints = {

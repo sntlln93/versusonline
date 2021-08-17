@@ -7,7 +7,7 @@ import {
   faSignOutAlt,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
-import { useAuth } from "hooks/useAuth";
+import { useAuth } from "contexts/Auth";
 
 const Header = () => {
   const auth = useAuth();

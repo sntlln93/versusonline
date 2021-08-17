@@ -1,7 +1,7 @@
 import Sidebar from "components/Sidebar";
 import Header from "components/Header";
 import Coupon from "components/Coupon";
-import { useAuth } from "hooks/useAuth";
+import { useAuth } from "contexts/Auth";
 import { Redirect } from "react-router-dom";
 
 const History = () => {
