@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext, createContext } from "react";
-import { useNotification } from "hooks/useNotification";
+import { useNotification } from "contexts/Notifications";
 import { useHistory } from "react-router-dom";
 import fetcher from "services/fetcher";
 
