@@ -2,10 +2,12 @@
 
 :root {
   --primary-color: #a2bd31;
-  --primary-color-alt: #79901a;
-  --secondary-color: #1e1e1e;
+  --primary-color-alt: #648e37;
+  --secondary-color: #141414;
   --secondary-color-alt: #252526;
-  --danger-color: #f53939;
+  --danger-color: rgb(245, 57, 57);
+  --info-color: hsl(223, 55%, 50%);
+  --warning-color: hsl(42, 100%, 50%);
   --terciary-color: #fafafa;
   --transparent-border-color: rgba(250, 250, 250, 0.1);
 
@@ -163,7 +165,6 @@ body {
 /* searchbar */
 
 .search {
-  max-width: var(--max-width);
   --size: 60px;
   border: 2px solid var(--primary-color);
   display: flex;
@@ -231,7 +232,7 @@ body {
 }
 
 .search--collapsable:focus-within {
-  width: 350px;
+  width: min(72vw, 350px);
   max-width: 100vh;
   background-color: var(--secondary-color-alt);
 }
@@ -373,7 +374,7 @@ body {
 }
 
 .btn--floating {
-  position: absolute;
+  position: fixed;
   padding: 1rem;
   bottom: 75px;
   right: 10px;
@@ -463,6 +464,54 @@ body {
   color: var(--terciary-color);
 }
 
+.games-list {
+  list-style: none;
+}
+
+.games-list li {
+  background: var(--transparent-border-color);
+  border: 2px solid var(--transparent-border-color);
+  border-radius: calc(var(--border-radius) / 2);
+  margin-block: 0.2rem;
+}
+
+.games-list details {
+  background-color: var(--secondary-color-alt);
+}
+
+.games-list details[open] summary {
+  border-bottom: 2px solid var(--transparent-border-color);
+}
+
+.games-list details .games-list__icon:before {
+  margin: auto 0;
+  content: "+";
+}
+.games-list details[open] .games-list__icon:before {
+  content: "-";
+}
+
+.games-list__icon:focus,
+.games-list__icon:hover {
+  color: var(--primary-color);
+  font-size: 1em;
+}
+
+.games-list__details {
+  border-left: 2px solid var(--primary-color);
+  padding: 0.5rem 1rem;
+  background-color: var(--secondary-color);
+}
+
+.games-list summary {
+  font-size: 1.1rem;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
 /* header */
 .header {
   /*need to fix overflowing when toggling searchbar*/
@@ -470,7 +519,7 @@ body {
   position: sticky;
   z-index: 111;
   top: 0;
-  padding: 1rem 3rem;
+  padding: 1rem min(var(--padding-horizontal), 2.5rem);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -907,8 +956,76 @@ summary ~ .header__menu {
 /* history */
 
 .history {
-  padding: var(--padding-vertical) var(--padding-horizontal);
+  padding: 0 var(--padding-horizontal);
   width: 100%;
+}
+
+.history__credits {
+  display: flex;
+  user-select: none;
+  justify-content: space-between;
+  align-items: center;
+  background-color: var(--secondary-color-alt);
+  padding: 0.8rem;
+  border-radius: var(--border-radius);
+  margin-bottom: 1rem;
+}
+
+.history__credits > * {
+  display: flex;
+  flex-direction: column;
+}
+
+.history__credits span {
+  font-size: 0.8rem;
+  text-transform: capitalize;
+  text-align: center;
+}
+
+.history__credits-title h1 {
+  font-size: 2rem;
+}
+
+.history__credits-icon {
+  cursor: pointer;
+  margin: 0 auto 0.5rem;
+  height: 40;
+  width: 40;
+  border-radius: 50%;
+  --bg-color: var(--secondary-color-alt);
+}
+
+.history__credits-add {
+  margin-inline: auto 1rem;
+  --border-color: var(--info-color);
+  --drawing-color: var(--info-color);
+}
+
+.history__credits-checkout {
+  --border-color: var(--warning-color);
+  --drawing-color: var(--warning-color);
+}
+
+.history__credits-icon-bg {
+  fill: var(--bg-color);
+  transition: background 500ms linear;
+}
+
+.history__credits-icon-border {
+  stroke: var(--border-color);
+  stroke-width: 4px;
+}
+
+.history__credits-icon-draw {
+  fill: var(--drawing-color);
+}
+
+.history__credits-icon:hover .history__credits-icon-bg {
+  fill: var(--border-color);
+}
+
+.history__credits-icon:hover .history__credits-icon-draw {
+  fill: var(--bg-color);
 }
 
 .history__details {
@@ -922,6 +1039,7 @@ summary ~ .header__menu {
   align-items: center;
   background-color: var(--secondary-color-alt);
   border-radius: var(--border-radius);
+  border: 1px solid var(--transparent-border-color);
   padding: 0.7em 0.7em;
   margin-bottom: 0.5em;
   cursor: pointer;
@@ -959,6 +1077,13 @@ summary ~ .header__menu {
 
 .history__amount--positive {
   background-color: var(--primary-color);
+  color: var(--secondary-color);
+}
+
+.history__amount--pending {
+  text-transform: capitalize;
+  font-weight: 900;
+  background-color: var(--warning-color);
   color: var(--secondary-color);
 }
 
@@ -1004,6 +1129,7 @@ summary ~ .header__menu {
 .dashboard .sidebar {
   position: sticky;
   background-color: var(--secondary-color-alt);
+  z-index: 1;
   padding-top: calc(var(--padding-vertical) / 2);
 }
 
@@ -1029,7 +1155,7 @@ summary ~ .header__menu {
 
 .sidebar__element {
   cursor: pointer;
-  padding: 1rem;
+  padding: 0.8rem;
   border-radius: var(--border-radius);
   margin-bottom: 5px;
 }
@@ -1144,6 +1270,7 @@ summary ~ .header__menu {
   background-color: var(--secondary-color-alt);
   border-radius: var(--border-radius);
   padding: calc(var(--padding-vertical) / 3) calc(var(--padding-horizontal) / 3);
+  margin-bottom: calc(var(--margin-bottom) / 2);
 }
 
 .game__date {
@@ -1312,6 +1439,11 @@ summary ~ .header__menu {
   .dashboard {
     display: block;
   }
+
+  .dashboard main {
+    padding-bottom: 4rem;
+  }
+
   .dashboard .sidebar {
     position: fixed;
     padding: 0;

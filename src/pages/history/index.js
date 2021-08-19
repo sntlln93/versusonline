@@ -3,6 +3,8 @@ import Header from "components/Header";
 import Coupon from "components/Coupon";
 import { useAuth } from "contexts/Auth";
 import { Redirect } from "react-router-dom";
+import MoneyOut from "components/icons/MoneyOut";
+import MoneyIn from "components/icons/MoneyIn";
 
 const History = () => {
   const auth = useAuth();
@@ -18,6 +20,26 @@ const History = () => {
         <Header />
         <div className="content">
           <section className="history">
+            <div className="history__credits">
+              <div className="history__credits-title">
+                <h1>10.487</h1>
+                <p>Créditos disponibles</p>
+              </div>
+              <div className="history__credits-add">
+                <MoneyIn className="history__credits-icon" />
+                <span>
+                  Ingresar
+                  <br /> dinero
+                </span>
+              </div>
+              <div className="history__credits-checkout">
+                <MoneyOut className="history__credits-icon" />
+                <span>
+                  Canjear
+                  <br /> créditos
+                </span>
+              </div>
+            </div>
             <h2>Movimientos</h2>
 
             <ul className="history__details">
@@ -33,8 +55,8 @@ const History = () => {
                   </span>
                   <span className="history__detail-date">Ayer</span>
                 </div>
-                <span className="history__amount history__amount--positive">
-                  1100
+                <span className="history__amount history__amount--pending">
+                  pendiente
                 </span>
               </li>
 
