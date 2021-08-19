@@ -11,6 +11,7 @@ const Coupon = () => {
     amount,
     profit,
     totalQuota,
+    handleBet,
   } = useBets();
 
   const coupon = useRef(null);
@@ -51,7 +52,7 @@ const Coupon = () => {
                 </div>
                 <h5>{`${bet.game.local.name} vs ${bet.game.away.name}`}</h5>
                 <div className="coupon__option">
-                  <span>{bet.selected.option}</span>
+                  <span>{bet.selected.name}</span>
                   <span>{bet.selected.quota}</span>
                 </div>
               </div>
@@ -78,7 +79,9 @@ const Coupon = () => {
                 {/* <strong className="coupon__amount">{profit}</strong> */}
                 <strong className="coupon__amount">{profit}</strong>
               </p>
-              <button className="btn btn--full-width">Jugar</button>
+              <button onClick={handleBet} className="btn btn--full-width">
+                Jugar
+              </button>
             </div>
           </>
         ) : (

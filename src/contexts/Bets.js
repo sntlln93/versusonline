@@ -1,5 +1,6 @@
 import { useState, useEffect, useContext, createContext } from "react";
 import fetcher from "services/fetcher";
+import { useNotification } from "contexts/Notifications";
 
 const betsContext = createContext();
 
@@ -13,6 +14,8 @@ export const useBets = () => {
 };
 
 const useBetsProvider = () => {
+  const notification = useNotification();
+
   const [regions, setRegions] = useState([]);
   const [tournaments, setTournaments] = useState([]);
   const [selectedRegionId, setSelectedRegionId] = useState(null);
@@ -93,6 +96,24 @@ const useBetsProvider = () => {
     setAmount(Number(event.target.value));
   };
 
+  const handleBet = () => {
+    const bet = {
+      amount: amount,
+      quotasId: selectedGames.map((game) => game.selected.quotaId),
+    };
+
+    fetcher
+      .post(`bets`, bet)
+      .then((response) => {
+        notification.add([{ message: response.data.message, type: "success" }]);
+      })
+      .catch((error) => {
+        notification.add([
+          { message: error.response.data.message, type: "error" },
+        ]);
+      });
+  };
+
   return {
     regions,
     tournaments,
@@ -108,5 +129,6 @@ const useBetsProvider = () => {
     handleChangeTournament,
     handleAddToCoupon,
     handleRemoveFromCoupon,
+    handleBet,
   };
 };

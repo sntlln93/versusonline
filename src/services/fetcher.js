@@ -3,7 +3,9 @@ import axios from "axios";
 const headers = localStorage.getItem("user")
   ? {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("user").token}`,
+      Authorization: `Bearer ${
+        JSON.parse(localStorage.getItem("user"))["token"]
+      }`,
     }
   : {
       "Content-Type": "application/json",
