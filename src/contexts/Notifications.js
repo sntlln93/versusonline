@@ -24,7 +24,9 @@ const useNotificationProvider = () => {
 
   const add = (notification) => {
     setNotifications(notifications.concat(notification));
-    // setInterval(() => {}, 5000);
+    setInterval(() => {
+      remove(notifications.length);
+    }, 4000);
   };
 
   const remove = (indexToBeDeleted) => {
