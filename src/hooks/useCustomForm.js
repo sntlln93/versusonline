@@ -1,16 +1,5 @@
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
-import { setLocale } from "yup";
-
-setLocale({
-  mixed: {
-    required: "Este campo es obligatorio",
-  },
-  string: {
-    email: "Ingresá un email válido",
-    min: "Ingresá un valor mayor o igual a {min}",
-  },
-});
 
 const useCustomForm = (schema) => {
   const {

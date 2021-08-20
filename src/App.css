@@ -411,11 +411,12 @@ body {
 /* modal */
 .modal-bg {
   position: fixed;
-  width: 100%;
+  z-index: 999;
+  width: 100vw;
   height: 100vh;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.9);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -439,6 +440,11 @@ body {
   color: var(--secondary-color);
   position: relative;
   cursor: default;
+}
+
+.modal__header h2 > svg {
+  margin-right: 1rem;
+  cursor: pointer;
 }
 
 .modal__content {

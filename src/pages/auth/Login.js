@@ -1,17 +1,12 @@
 import Logo from "components/Logo";
 import useCustomForm from "hooks/useCustomForm";
-import * as yup from "yup";
 import { Link } from "react-router-dom";
 import { useAuth } from "contexts/Auth";
 import { Redirect } from "react-router-dom";
-
-const schema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().required(),
-});
+import loginSchema from "validations/loginSchema";
 
 const Login = () => {
-  const { register, handleSubmit, errors } = useCustomForm(schema);
+  const { register, handleSubmit, errors } = useCustomForm(loginSchema);
   const auth = useAuth();
 
   if (auth.isAuthenticated()) {

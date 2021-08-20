@@ -1,25 +1,17 @@
 import Logo from "components/Logo";
 import useCustomForm from "hooks/useCustomForm";
-import * as yup from "yup";
 import { Link } from "react-router-dom";
 import { useAuth } from "contexts/Auth";
 import { Redirect } from "react-router-dom";
+import registerSchema from "validations/registerSchema";
 
 const hints = {
   phone:
     "Un número de teléfono válido tiene 10 dígitos: 2, 3 o 4 para el código de área y 8, 7, 6 respectivamente para el número.",
 };
 
-const schema = yup.object().shape({
-  email: yup.string().email().required(),
-  password: yup.string().min(8).required(),
-  name: yup.string().required(),
-  lastname: yup.string().required(),
-  phone: yup.string().nullable(),
-});
-
 const Register = () => {
-  const { register, handleSubmit, errors } = useCustomForm(schema);
+  const { register, handleSubmit, errors } = useCustomForm(registerSchema);
   const auth = useAuth();
 
   if (auth.isAuthenticated()) {
