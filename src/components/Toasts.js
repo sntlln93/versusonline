@@ -7,7 +7,11 @@ const Toasts = ({ messages }) => {
     <div className="toasts">
       {messages.map((message, index) => {
         return (
-          <div className={`toast toast--${message.type}`} key={index}>
+          <div
+            className={`toast toast--${message.type}`}
+            key={index}
+            style={{ "--duration": `${index * 300}ms` }}
+          >
             <div className="toast__icon"></div>
             <div className="toast__body">
               <p>{message.message}</p>
