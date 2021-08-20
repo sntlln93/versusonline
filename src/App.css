@@ -427,9 +427,20 @@ body {
 .modal {
   border-radius: calc(var(--border-radius) * 2);
   box-shadow: var(--cool-shadow-alternative);
+  max-height: 90%;
+  overflow-y: scroll;
   width: 80%;
   max-width: var(--max-width);
   background-color: var(--secondary-color);
+}
+
+.modal::-webkit-scrollbar-track {
+  background-color: hsl(0, 61%, 37%);
+  display: none;
+}
+.modal::-webkit-scrollbar-thumb {
+  display: none;
+  background-color: hsl(0, 0%, 30%);
 }
 
 .modal__header {
@@ -443,6 +454,9 @@ body {
   cursor: default;
 }
 
+.modal__header h2 {
+  font-size: 1.2rem;
+}
 .modal__header h2 > svg {
   margin-right: 1rem;
   cursor: pointer;
@@ -1053,6 +1067,7 @@ summary ~ .header__menu {
 }
 
 .history__detail {
+  width: 70%;
   display: flex;
   flex-direction: column;
 }
@@ -1070,7 +1085,7 @@ summary ~ .header__menu {
 }
 
 .history__detail-description {
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: bold;
 }
 .history__detail-date {
