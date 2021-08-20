@@ -7,7 +7,7 @@ import { useNotification } from "contexts/Notifications";
 import addCredits from "services/addCredits";
 import checkoutCredits from "services/checkoutCredits";
 
-const Credits = () => {
+const Credits = ({ setRefresh }) => {
   const [addModal, setAddModal] = useState(false);
   const [checkoutModal, setCheckoutModal] = useState(false);
   const notification = useNotification();
@@ -22,13 +22,21 @@ const Credits = () => {
 
   const onAdd = (body) => {
     addCredits(body)
-      .then(() => notification.add([infoMessage]))
+      .then(() => {
+        setRefresh(true);
+        notification.add([infoMessage]);
+        setAddModal(false);
+      })
       .catch(() => notification.add([errorMessage]));
   };
 
   const onCheckout = (body) => {
     checkoutCredits(body)
-      .then(() => notification.add([infoMessage]))
+      .then(() => {
+        setRefresh(true);
+        notification.add([infoMessage]);
+        setCheckoutModal(false);
+      })
       .catch(() => notification.add([errorMessage]));
   };
 
