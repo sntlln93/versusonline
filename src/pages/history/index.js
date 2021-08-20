@@ -18,7 +18,6 @@ const History = () => {
       .get("history")
       .then((response) => {
         const arr = Object.values(response.data);
-        console.log(arr);
         setDetails(arr);
       })
       .catch((error) => console.error(error));
