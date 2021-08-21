@@ -9,6 +9,7 @@ import History from "./pages/history";
 import { AuthProvider } from "contexts/Auth";
 import { NotificationProvider } from "contexts/Notifications";
 import { BetsProvider } from "contexts/Bets";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 initFontAwesome();
 
@@ -28,12 +29,12 @@ function App() {
               <Register />
             </Route>
             <BetsProvider>
-              <Route exact path="/home">
+              <ProtectedRoute exact path="/home">
                 <Home />
-              </Route>
-              <Route exact path="/history">
+              </ProtectedRoute>
+              <ProtectedRoute exact path="/history">
                 <History />
-              </Route>
+              </ProtectedRoute>
             </BetsProvider>
           </AuthProvider>
         </NotificationProvider>
