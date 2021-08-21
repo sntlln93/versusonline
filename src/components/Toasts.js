@@ -12,7 +12,6 @@ const Toasts = ({ messages }) => {
             key={index}
             style={{ "--duration": `${index * 300}ms` }}
           >
-            <div className="toast__icon"></div>
             <div className="toast__body">
               <p>{message.message}</p>
             </div>

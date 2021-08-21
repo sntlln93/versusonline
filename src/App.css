@@ -92,55 +92,17 @@ body {
   color: var(--terciary-color);
 }
 
-.toast__icon {
-  position: relative;
-  border-radius: 50%;
-  height: 2.5rem;
-  width: 2.5rem;
-  margin-right: 1rem;
-}
-
 .toast--error {
   border-left: var(--border-left) solid var(--danger-color);
-}
-.toast--error > .toast__icon:before {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  content: "✖";
-}
-.toast--error > .toast__icon {
-  background-color: var(--danger-color);
 }
 
 .toast--success {
   border-left: var(--border-left) solid var(--primary-color);
 }
-.toast--success > .toast__icon:before {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  content: "✔";
-}
-.toast--success > .toast__icon {
-  background-color: var(--primary-color);
-}
 
 .toast--info {
   content: "i";
   border-left: var(--border-left) solid rgb(57, 32, 197);
-}
-.toast--info > .toast__icon:before {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  content: "\2139";
-}
-.toast--info > .toast__icon {
-  background-color: rgb(57, 32, 197);
 }
 
 /* tooltip */

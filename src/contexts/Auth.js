@@ -74,12 +74,14 @@ const useAuthProvider = () => {
 
   const signout = () => {
     fetcher
-      .post("logout")
+      .delete("logout")
       .then((response) => {
-        setUser(null);
-        localStorage.removeItem("user");
-        history.push("/");
-        console.log(response.data.message);
+        if (response.status === 202) {
+          setUser(null);
+          localStorage.removeItem("user");
+          history.push("/login");
+        }
+        notification.add([{ message: response.data.message, type: "success" }]);
       })
       .catch((error) => console.log(error.response.data.message));
   };

@@ -20,22 +20,22 @@ function App() {
           <Landing />
         </Route>
         <NotificationProvider>
-          <BetsProvider>
-            <AuthProvider>
-              <Route exact path="/login">
-                <Login />
-              </Route>
-              <Route exact path="/register">
-                <Register />
-              </Route>
+          <AuthProvider>
+            <Route exact path="/login">
+              <Login />
+            </Route>
+            <Route exact path="/register">
+              <Register />
+            </Route>
+            <BetsProvider>
               <Route exact path="/home">
                 <Home />
               </Route>
               <Route exact path="/history">
                 <History />
               </Route>
-            </AuthProvider>
-          </BetsProvider>
+            </BetsProvider>
+          </AuthProvider>
         </NotificationProvider>
       </Switch>
     </Router>

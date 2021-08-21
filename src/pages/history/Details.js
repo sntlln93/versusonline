@@ -7,6 +7,25 @@ const Details = ({ details }) => {
     setShowDetail(null);
   };
 
+  const getClassName = (detail) => {
+    if (detail.state === "pendiente") {
+      return "history__amount--pending";
+    }
+
+    switch (detail.type) {
+      case "CARGA":
+        return "history__amount--positive";
+
+      case "RETIRO":
+        return "history__amount--negative";
+
+      case "JUGADA":
+        return "history__amount--negative";
+      default:
+        return "history__amount--negative";
+    }
+  };
+
   return (
     <>
       {showDetail && (
@@ -30,13 +49,7 @@ const Details = ({ details }) => {
                     {detail.dateForHumans}
                   </span>
                 </div>
-                <span
-                  className={`history__amount ${
-                    detail.state === "pendiente"
-                      ? "history__amount--pending"
-                      : "history__amount--positive"
-                  }`}
-                >
+                <span className={`history__amount ${getClassName(detail)}`}>
                   {detail.amount}
                 </span>
               </li>
