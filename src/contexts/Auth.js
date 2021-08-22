@@ -78,7 +78,7 @@ const useAuthProvider = () => {
       .then((response) => {
         if (response.status === 202) {
           setUser(null);
-          localStorage.removeItem("user");
+          localStorage.clear();
           history.push("/login");
         }
         notification.add([{ message: response.data.message, type: "success" }]);

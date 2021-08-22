@@ -1,19 +1,16 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faReceipt } from "@fortawesome/free-solid-svg-icons";
-import { useBets } from "contexts/Bets";
 import { useRef } from "react";
 
-const Coupon = () => {
-  const {
-    selectedGames,
-    handleRemoveFromCoupon,
-    handleChangeAmount,
-    amount,
-    profit,
-    totalQuota,
-    handleBet,
-  } = useBets();
-
+const Coupon = ({
+  selectedGames,
+  totalQuota,
+  amount,
+  profit,
+  handleRemoveFromCoupon,
+  handleChangeAmount,
+  handleBet,
+}) => {
   const coupon = useRef(null);
 
   const handleShowCoupon = () => {
@@ -24,7 +21,12 @@ const Coupon = () => {
     coupon.current.style.display = "none";
   };
 
-  // console.log({ profit, amount, totalQuota });
+  const handleHideCouponFromBackground = (event) => {
+    if (coupon.current === event.target) {
+      handleHideCoupon();
+    }
+  };
+
   return (
     <>
       <button
@@ -33,7 +35,11 @@ const Coupon = () => {
       >
         <FontAwesomeIcon icon={faReceipt} />
       </button>
-      <section className="coupon" ref={coupon}>
+      <section
+        className="coupon"
+        ref={coupon}
+        onClick={handleHideCouponFromBackground}
+      >
         <div className="coupon__title">
           <h2>Cupón</h2>
           <span onClick={handleHideCoupon} className="coupon__close">

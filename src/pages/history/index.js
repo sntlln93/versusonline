@@ -1,5 +1,3 @@
-import { useAuth } from "contexts/Auth";
-import { Redirect } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Sidebar from "components/Sidebar";
 import Header from "components/Header";
@@ -7,11 +5,21 @@ import Coupon from "components/Coupon";
 import Credits from "./Credits";
 import Details from "./Details";
 import fetcher from "services/fetcher";
+import useCoupon from "hooks/useCoupon";
 
 const History = () => {
-  const auth = useAuth();
   const [details, setDetails] = useState([]);
   const [shouldQueryAgain, setShouldQueryAgain] = useState(false);
+
+  const {
+    selectedGames,
+    totalQuota,
+    amount,
+    profit,
+    handleRemoveFromCoupon,
+    handleChangeAmount,
+    handleBet,
+  } = useCoupon();
 
   useEffect(() => {
     fetcher
@@ -23,10 +31,6 @@ const History = () => {
       .catch((error) => console.error(error));
   }, [shouldQueryAgain]);
 
-  if (!auth.isAuthenticated()) {
-    return <Redirect to="/" />;
-  }
-
   return (
     <div className="dashboard">
       <Sidebar />
@@ -37,8 +41,15 @@ const History = () => {
             <Credits setRefresh={setShouldQueryAgain} />
             <Details details={details} />
           </section>
-
-          <Coupon />
+          <Coupon
+            selectedGames={selectedGames}
+            totalQuota={totalQuota}
+            amount={amount}
+            profit={profit}
+            handleRemoveFromCoupon={handleRemoveFromCoupon}
+            handleChangeAmount={handleChangeAmount}
+            handleBet={handleBet}
+          />
         </div>
       </main>
     </div>

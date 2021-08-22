@@ -10,7 +10,7 @@ export function NotificationProvider({ children }) {
   return (
     <notificationContext.Provider value={notification}>
       {children}
-      {notifications && <Toasts messages={notifications} />}{" "}
+      {notifications && <Toasts messages={notifications} />}
     </notificationContext.Provider>
   );
 }

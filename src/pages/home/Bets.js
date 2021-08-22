@@ -1,16 +1,16 @@
-import { useBets } from "contexts/Bets";
-
-const Bets = () => {
-  const {
-    regions,
-    tournaments,
-    games,
-    selectedRegionId,
-    selectedTournamentId,
-    handleChangeRegion,
-    handleChangeTournament,
-    handleAddToCoupon,
-  } = useBets();
+import { useState, useEffect } from "react";
+const Bets = ({
+  regions,
+  tournaments,
+  games,
+  selectedRegionId,
+  selectedTournamentId,
+  handleChangeRegion,
+  handleChangeTournament,
+  selectedGames,
+  handleAddToCoupon,
+}) => {
+  const [gamesToShow, setGamesToShow] = useState([]);
 
   const handleQuotaSelected = (game, option) => {
     const toBeAdded = {
@@ -19,6 +19,17 @@ const Bets = () => {
     };
     handleAddToCoupon(toBeAdded);
   };
+
+  useEffect(() => {
+    setGamesToShow(
+      games.filter(
+        (game) =>
+          !selectedGames
+            .map((selectedGame) => selectedGame.game.id)
+            .includes(game.id)
+      )
+    );
+  }, [selectedGames, games]);
 
   return (
     <section className="bets">
@@ -68,42 +79,40 @@ const Bets = () => {
 
       <div className="games">
         <h2>Próximos partidos</h2>
-        {games &&
-          games
-            .filter((game) => game.tournamentId === selectedTournamentId)
-            .map((game) => {
-              return (
-                <div className="games__game" key={game.id}>
-                  <form action="">
-                    <h3>{`${game.local.name} vs ${game.away.name}`}</h3>
-                    <div className="game__date">{game.date}</div>
-                    <div className="game__odds">
-                      <div
-                        className="game__odds-odd"
-                        onClick={() => handleQuotaSelected(game, game.local)}
-                      >
-                        <span>{game.local.name}</span>
-                        <span>{game.local.quota}</span>
-                      </div>
-                      <div
-                        className="game__odds-odd"
-                        onClick={() => handleQuotaSelected(game, game.tie)}
-                      >
-                        <span>{game.tie.name}</span>
-                        <span>{game.tie.quota}</span>
-                      </div>
-                      <div
-                        className="game__odds-odd"
-                        onClick={() => handleQuotaSelected(game, game.away)}
-                      >
-                        <span>{game.away.name}</span>
-                        <span>{game.away.quota}</span>
-                      </div>
+        {gamesToShow &&
+          gamesToShow.map((game) => {
+            return (
+              <div className="games__game" key={game.id}>
+                <form action="">
+                  <h3>{`${game.local.name} vs ${game.away.name}`}</h3>
+                  <div className="game__date">{game.date}</div>
+                  <div className="game__odds">
+                    <div
+                      className="game__odds-odd"
+                      onClick={() => handleQuotaSelected(game, game.local)}
+                    >
+                      <span>{game.local.name}</span>
+                      <span>{game.local.quota}</span>
                     </div>
-                  </form>
-                </div>
-              );
-            })}
+                    <div
+                      className="game__odds-odd"
+                      onClick={() => handleQuotaSelected(game, game.tie)}
+                    >
+                      <span>{game.tie.name}</span>
+                      <span>{game.tie.quota}</span>
+                    </div>
+                    <div
+                      className="game__odds-odd"
+                      onClick={() => handleQuotaSelected(game, game.away)}
+                    >
+                      <span>{game.away.name}</span>
+                      <span>{game.away.quota}</span>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            );
+          })}
       </div>
     </section>
   );
