@@ -27,6 +27,8 @@ const Coupon = ({
     }
   };
 
+  const onBetSubmit = () => handleBet();
+
   return (
     <>
       <button
@@ -85,7 +87,7 @@ const Coupon = ({
                 {/* <strong className="coupon__amount">{profit}</strong> */}
                 <strong className="coupon__amount">{profit}</strong>
               </p>
-              <button onClick={handleBet} className="btn btn--full-width">
+              <button onClick={onBetSubmit} className="btn btn--full-width">
                 Jugar
               </button>
             </div>

@@ -59,8 +59,11 @@ const useCoupon = () => {
       .post(`bets`, bet)
       .then((response) => {
         notification.add([{ message: response.data.message, type: "success" }]);
+        setSelectedGames([]);
+        localStorage.removeItem("selectedGames");
       })
       .catch((error) => {
+        console.log(error);
         notification.add([
           { message: error.response.data.message, type: "error" },
         ]);
