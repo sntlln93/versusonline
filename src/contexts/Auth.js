@@ -19,6 +19,10 @@ const useAuthProvider = () => {
   const notification = useNotification();
   let history = useHistory();
 
+  const getToken = () => {
+    return user.token;
+  };
+
   const storeUser = (response) => {
     setUser(response.data);
     localStorage.setItem("user", JSON.stringify(response.data));
@@ -74,10 +78,15 @@ const useAuthProvider = () => {
 
   const signout = () => {
     fetcher
-      .delete("logout")
+      .delete("logout", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${user.token}`,
+        },
+      })
       .then((response) => {
+        console.log(response);
         if (response.status === 202) {
-          setUser(null);
           localStorage.clear();
           history.push("/login");
         }
@@ -90,5 +99,5 @@ const useAuthProvider = () => {
     return localStorage.getItem("user") ? true : false;
   };
 
-  return { user, login, signup, signout, isAuthenticated };
+  return { user, login, signup, signout, isAuthenticated, getToken };
 };

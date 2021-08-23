@@ -45,8 +45,8 @@ const Header = () => {
           </summary>
           <div className="header__menu">
             <div className="header__user hide-desktop">
-              <span>CLEGUIZAMON </span>
-              <span>10.487 créditos</span>
+              <span>{username} </span>
+              <span>{credits}</span>
             </div>
             <hr className="hide-desktop" />
             <ul>

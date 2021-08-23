@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useAuth } from "contexts/Auth";
 import fetcher from "services/fetcher";
 
 const useBets = () => {
@@ -7,20 +8,31 @@ const useBets = () => {
   const [selectedRegionId, setSelectedRegionId] = useState(null);
   const [selectedTournamentId, setSelectedTournamentId] = useState(null);
   const [games, setGames] = useState([]);
+  const auth = useAuth();
 
   useEffect(() => {
     fetcher
-      .get("/regions")
+      .get("/regions", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.getToken()}`,
+        },
+      })
       .then((response) => {
         setRegions(response.data);
         setSelectedRegionId(response.data[0].id);
       })
       .catch((error) => console.error(error));
-  }, []);
+  }, [auth]);
 
   useEffect(() => {
     fetcher
-      .get(`regions/${selectedRegionId}/tournaments`)
+      .get(`regions/${selectedRegionId}/tournaments`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.getToken()}`,
+        },
+      })
       .then((response) => {
         if (response.data[0]) {
           setTournaments(response.data);
@@ -28,16 +40,21 @@ const useBets = () => {
         }
       })
       .catch((error) => console.error(error));
-  }, [selectedRegionId]);
+  }, [selectedRegionId, auth]);
 
   useEffect(() => {
     fetcher
-      .get(`tournaments/${selectedTournamentId}/games`)
+      .get(`tournaments/${selectedTournamentId}/games`, {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.getToken()}`,
+        },
+      })
       .then((response) => {
         setGames(response.data);
       })
       .catch((error) => console.error(error));
-  }, [selectedTournamentId]);
+  }, [selectedTournamentId, auth]);
 
   const handleChangeRegion = (regionId) => {
     setSelectedRegionId(regionId);
