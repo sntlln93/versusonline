@@ -8,11 +8,13 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useAuth } from "contexts/Auth";
+import useCredits from "hooks/useCredits";
 
 const Header = () => {
   const auth = useAuth();
-  const username = auth.user ? auth.user.name : "";
+  const { credits } = useCredits();
 
+  const username = auth.user ? auth.user.name : "";
   return (
     <header className="header">
       <div className="header__actions">
@@ -32,7 +34,7 @@ const Header = () => {
           <summary>
             <div className="header__user hide-mobile">
               <span>{username}</span>
-              <span>10.487 créditos</span>
+              <span>{credits}</span>
             </div>
             <div className="header__icon hide-mobile">
               <FontAwesomeIcon icon={faCaretDown} />
