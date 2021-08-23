@@ -14,7 +14,7 @@ const Header = () => {
   const auth = useAuth();
   const { credits } = useCredits();
 
-  const username = auth.user ? auth.user.name : "";
+  const username = auth.getUser() ? auth.getUser().name : "";
   return (
     <header className="header">
       <div className="header__actions">

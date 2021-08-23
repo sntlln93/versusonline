@@ -15,7 +15,7 @@ const useBets = () => {
       .get("/regions", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${auth.getToken()}`,
+          Authorization: `Bearer ${auth.getUser().token}`,
         },
       })
       .then((response) => {
@@ -30,7 +30,7 @@ const useBets = () => {
       .get(`regions/${selectedRegionId}/tournaments`, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${auth.getToken()}`,
+          Authorization: `Bearer ${auth.getUser().token}`,
         },
       })
       .then((response) => {
@@ -47,7 +47,7 @@ const useBets = () => {
       .get(`tournaments/${selectedTournamentId}/games`, {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${auth.getToken()}`,
+          Authorization: `Bearer ${auth.getUser().token}`,
         },
       })
       .then((response) => {

@@ -1,4 +1,4 @@
-import { useState, useEffect, useContext, createContext } from "react";
+import { useContext, createContext } from "react";
 import { useNotification } from "contexts/Notifications";
 import { useHistory } from "react-router-dom";
 import fetcher from "services/fetcher";
@@ -15,25 +15,19 @@ export const useAuth = () => {
 };
 
 const useAuthProvider = () => {
-  const [user, setUser] = useState(null);
   const notification = useNotification();
   let history = useHistory();
 
-  const getToken = () => {
-    return user.token;
+  const getUser = () => {
+    return localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))
+      : false;
   };
 
   const storeUser = (response) => {
-    setUser(response.data);
     localStorage.setItem("user", JSON.stringify(response.data));
     history.push("/home");
   };
-
-  useEffect(() => {
-    if (localStorage.getItem("user")) {
-      setUser(JSON.parse(localStorage.getItem("user")));
-    }
-  }, []);
 
   const login = (data) => {
     fetcher
@@ -81,7 +75,7 @@ const useAuthProvider = () => {
       .delete("logout", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${user.token}`,
+          Authorization: `Bearer ${getUser().token}`,
         },
       })
       .then((response) => {
@@ -95,9 +89,5 @@ const useAuthProvider = () => {
       .catch((error) => console.log(error.response.data.message));
   };
 
-  const isAuthenticated = () => {
-    return localStorage.getItem("user") ? true : false;
-  };
-
-  return { user, login, signup, signout, isAuthenticated, getToken };
+  return { getUser, login, signup, signout };
 };

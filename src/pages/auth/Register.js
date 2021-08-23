@@ -14,7 +14,7 @@ const Register = () => {
   const { register, handleSubmit, errors } = useCustomForm(registerSchema);
   const auth = useAuth();
 
-  if (auth.isAuthenticated()) {
+  if (auth.getUser()) {
     return <Redirect to="/home" />;
   }
 

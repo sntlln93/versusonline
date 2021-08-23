@@ -11,7 +11,7 @@ const useCredits = () => {
       .get("/credits", {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${auth.getToken()}`,
+          Authorization: `Bearer ${auth.getUser().token}`,
         },
       })
       .then((response) => {

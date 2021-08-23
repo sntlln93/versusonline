@@ -9,7 +9,7 @@ const Login = () => {
   const { register, handleSubmit, errors } = useCustomForm(loginSchema);
   const auth = useAuth();
 
-  if (auth.isAuthenticated()) {
+  if (auth.getUser()) {
     return <Redirect to="/home" />;
   }
 
