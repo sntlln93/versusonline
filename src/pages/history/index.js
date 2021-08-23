@@ -4,12 +4,14 @@ import Header from "components/Header";
 import Coupon from "components/Coupon";
 import Credits from "./Credits";
 import Details from "./Details";
+import { useAuth } from "contexts/Auth";
 import fetcher from "services/fetcher";
 import useCoupon from "hooks/useCoupon";
 
 const History = () => {
   const [details, setDetails] = useState([]);
   const [shouldQueryAgain, setShouldQueryAgain] = useState(false);
+  const auth = useAuth();
 
   const {
     selectedGames,
@@ -23,7 +25,12 @@ const History = () => {
 
   useEffect(() => {
     fetcher
-      .get("history")
+      .get("history", {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${auth.getUser().token}`,
+        },
+      })
       .then((response) => {
         const arr = Object.values(response.data);
         setDetails(arr);
