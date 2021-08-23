@@ -6,11 +6,13 @@ import useCreditForm from "hooks/useCreditForm";
 import { useNotification } from "contexts/Notifications";
 import addCredits from "services/addCredits";
 import checkoutCredits from "services/checkoutCredits";
+import useCredits from "hooks/useCredits";
 
 const Credits = ({ setRefresh }) => {
   const [addModal, setAddModal] = useState(false);
   const [checkoutModal, setCheckoutModal] = useState(false);
   const notification = useNotification();
+  const { credits } = useCredits();
   const {
     formattedAmount,
     phone,
@@ -85,7 +87,7 @@ const Credits = ({ setRefresh }) => {
       )}
       <div className="history__credits">
         <div className="history__credits-title">
-          <h1>10.487</h1>
+          <h1>{credits}</h1>
           <p>Créditos disponibles</p>
         </div>
         <div className="history__credits-add">
