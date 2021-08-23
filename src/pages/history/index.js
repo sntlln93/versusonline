@@ -36,7 +36,7 @@ const History = () => {
         setDetails(arr);
       })
       .catch((error) => console.error(error));
-  }, [shouldQueryAgain]);
+  }, [shouldQueryAgain, auth]);
 
   return (
     <div className="dashboard">
