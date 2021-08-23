@@ -20,7 +20,7 @@ const useAuthProvider = () => {
   let history = useHistory();
 
   const storeUser = (response) => {
-    setUser(JSON.stringify(response.data));
+    setUser(response.data);
     localStorage.setItem("user", JSON.stringify(response.data));
     history.push("/home");
   };
