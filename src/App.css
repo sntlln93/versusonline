@@ -951,6 +951,7 @@ summary ~ .header__menu {
   background-color: var(--secondary-color-alt);
   padding: 0.8rem;
   border-radius: var(--border-radius);
+  border: 1px solid var(--transparent-border-color);
   margin-bottom: 1rem;
 }
 
