@@ -8,19 +8,30 @@ const Details = ({ details }) => {
   };
 
   const getClassName = (detail) => {
-    if (detail.state === "pendiente") {
-      return "history__amount--pending";
+    if (detail.state === "ganadora") {
+      return "history__amount--positive";
+    } else if (detail.state === "perdedora") {
+      return "history__amount--negative";
+    } else if (detail.state === "pendiente") {
+      switch (detail.type) {
+        case "CARGA":
+          return "history__amount--positive history__amount--pending";
+
+        case "RETIRO" || "JUGADA":
+          return "history__amount--negative history__amount--pending";
+
+        default:
+          return "history__amount--negative history__amount--pending";
+      }
     }
 
     switch (detail.type) {
       case "CARGA":
         return "history__amount--positive";
 
-      case "RETIRO":
+      case "RETIRO" || "JUGADA":
         return "history__amount--negative";
 
-      case "JUGADA":
-        return "history__amount--negative";
       default:
         return "history__amount--negative";
     }
@@ -32,6 +43,7 @@ const Details = ({ details }) => {
         <ShowDetail
           detail={details.find((d) => showDetail === d.id)}
           handleClose={closeDetail}
+          getClassName={getClassName}
         />
       )}
       <h2>Movimientos</h2>
@@ -50,40 +62,11 @@ const Details = ({ details }) => {
                   </span>
                 </div>
                 <span className={`history__amount ${getClassName(detail)}`}>
-                  {detail.amount}
+                  {detail.profit || detail.amount}
                 </span>
               </li>
             );
           })}
-        {/* 
-        <li>
-          <img
-            alt="detail"
-            src="../assets/images/leagues/conmebol.svg"
-            className="history__detail-image"
-          />
-          <div className="history__detail">
-            <span className="history__detail-description">
-              Cargaste créditos
-            </span>
-            <span className="history__detail-date">Ayer</span>
-          </div>
-          <span className="history__amount history__amount--positive">
-            1100
-          </span>
-        </li>
-
-        <li>
-          <div className="history__detail">
-            <span className="history__detail-description">
-              River Plate vs Central Córdoba
-            </span>
-            <span className="history__detail-date">Ayer</span>
-          </div>
-          <span className="history__amount history__amount--negative">
-            1100
-          </span>
-        </li> */}
       </ul>
     </>
   );

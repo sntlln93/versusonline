@@ -1,6 +1,6 @@
 import { useRef } from "react";
 
-const ShowDetail = ({ detail, handleClose }) => {
+const ShowDetail = ({ detail, handleClose, getClassName }) => {
   const modalBg = useRef(null);
 
   const handleCloseFromBackground = (event) => {
@@ -39,10 +39,18 @@ const ShowDetail = ({ detail, handleClose }) => {
 
             <p>
               <span>Monto:</span>
-              <span className="history__amount history__amount--positive">
+              <span className={`history__amount ${getClassName(detail)}`}>
                 ${detail.amount}
               </span>
             </p>
+
+            {detail.profit ? (
+              <p>
+                <span>Ganancia: </span> {detail.profit}
+              </p>
+            ) : (
+              <></>
+            )}
 
             {detail.games && (
               <>
