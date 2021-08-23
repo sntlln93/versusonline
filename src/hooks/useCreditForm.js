@@ -1,13 +1,15 @@
 import { useEffect, useState } from "react";
 import { useNotification } from "contexts/Notifications";
 import creditSchema from "validations/creditSchema";
+import { useAuth } from "contexts/Auth";
 
 const useCreditForm = () => {
   const notification = useNotification();
+  const auth = useAuth();
 
   const [amount, setAmount] = useState(0);
   const [formattedAmount, setFormattedAmount] = useState("$ 0");
-  const [phone, setPhone] = useState("");
+  const [phone, setPhone] = useState(auth.getUser().phone);
 
   useEffect(() => {
     const options = { style: "currency", currency: "ARS" };
