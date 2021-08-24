@@ -8,7 +8,7 @@ const images = [
 ];
 
 const Carousel = () => {
-  const { activeSlide, moveToSlide, track } = useSlider();
+  const { activeSlide, track } = useSlider();
 
   return (
     <section className="carousel">
@@ -50,21 +50,18 @@ const Carousel = () => {
 
       <div className="carousel__nav">
         <button
-          onClick={() => moveToSlide(0)}
           className={`carousel__indicator ${
             activeSlide === 0 ? "carousel__indicator--active" : ""
           }`}
         ></button>
 
         <button
-          onClick={() => moveToSlide(1)}
           className={`carousel__indicator ${
             activeSlide === 1 ? "carousel__indicator--active" : ""
           }`}
         ></button>
 
         <button
-          onClick={() => moveToSlide(2)}
           className={`carousel__indicator ${
             activeSlide === 2 ? "carousel__indicator--active" : ""
           }`}

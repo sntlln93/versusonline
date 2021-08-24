@@ -13,9 +13,9 @@ const useSlider = () => {
     Array.from(track.current.children).forEach(setSlidePosition);
   }, []);
 
-  //   useEffect(() => {
-  //     setInterval(() => moveToSlide(activeSlide + 1), 4000);
-  //   }, [activeSlide]);
+  useEffect(() => {
+    setTimeout(() => moveToSlide(activeSlide + 1), 6000);
+  }, [activeSlide]);
 
   const moveToSlide = (targetIndex) => {
     const slidesCount = track.current.children.length;
@@ -35,7 +35,6 @@ const useSlider = () => {
 
   return {
     activeSlide,
-    moveToSlide,
     track,
   };
 };
