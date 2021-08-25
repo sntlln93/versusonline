@@ -14,10 +14,11 @@ const useSlider = () => {
   }, []);
 
   useEffect(() => {
-    setTimeout(() => moveToSlide(activeSlide + 1), 6000);
+    setTimeout(() => moveToSlide(activeSlide + 1), 5000);
   }, [activeSlide]);
 
   const moveToSlide = (targetIndex) => {
+    if (!track.current) return;
     const slidesCount = track.current.children.length;
     if (!slidesCount > 0) return;
 
