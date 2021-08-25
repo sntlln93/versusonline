@@ -10,10 +10,38 @@ import {
 import { Link } from "react-router-dom";
 import { useAuth } from "contexts/Auth";
 import useCredits from "hooks/useCredits";
+import { useRef, useEffect, useState } from "react";
 
 const Header = () => {
   const auth = useAuth();
   const { credits } = useCredits();
+
+  const [userMenuIsOpen, setUserMenuIsOpen] = useState(false);
+  const userMenu = useRef(null);
+  const userMenuContent = useRef(null);
+
+  useEffect(() => {
+    const checkIfClickedOutside = (event) => {
+      if (!userMenu.current && !userMenuContent.current) {
+        return;
+      }
+
+      if (!userMenu.current.open) {
+        setUserMenuIsOpen(true);
+        return;
+      }
+
+      if (event.target !== userMenuContent.current) {
+        event.preventDefault();
+        userMenu.current.open = false;
+      }
+    };
+
+    window.addEventListener("click", checkIfClickedOutside);
+    return () => {
+      document.removeEventListener("click", checkIfClickedOutside);
+    };
+  }, [userMenuIsOpen]);
 
   const username = auth.getUser() ? auth.getUser().name : "";
   return (
@@ -31,7 +59,7 @@ const Header = () => {
           </button>
         </div>
 
-        <details>
+        <details ref={userMenu}>
           <summary>
             <div className="header__user hide-mobile">
               <span>{username}</span>
@@ -46,7 +74,7 @@ const Header = () => {
               <FontAwesomeIcon icon={faUser} />
             </div>
           </summary>
-          <div className="header__menu">
+          <div className="header__menu" ref={userMenuContent}>
             <div className="header__user hide-desktop">
               <span>{username} </span>
               <span>
