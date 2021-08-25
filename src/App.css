@@ -512,6 +512,7 @@ body {
 .header--landing {
   padding-right: var(--padding-horizontal);
   padding-left: var(--padding-horizontal);
+  position: static;
   box-shadow: var(--cool-shadow);
 }
 
