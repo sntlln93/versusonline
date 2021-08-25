@@ -5,6 +5,7 @@ import {
   faUser,
   faKey,
   faSignOutAlt,
+  faCoins,
 } from "@fortawesome/free-solid-svg-icons";
 import { Link } from "react-router-dom";
 import { useAuth } from "contexts/Auth";
@@ -34,7 +35,9 @@ const Header = () => {
           <summary>
             <div className="header__user hide-mobile">
               <span>{username}</span>
-              <span>{credits}</span>
+              <span>
+                {credits} <FontAwesomeIcon icon={faCoins} color="#ffb300" />
+              </span>
             </div>
             <div className="header__icon hide-mobile">
               <FontAwesomeIcon icon={faCaretDown} />
@@ -46,7 +49,9 @@ const Header = () => {
           <div className="header__menu">
             <div className="header__user hide-desktop">
               <span>{username} </span>
-              <span>{credits}</span>
+              <span>
+                {credits} <FontAwesomeIcon icon={faCoins} color="#ffb300" />
+              </span>
             </div>
             <hr className="hide-desktop" />
             <ul>

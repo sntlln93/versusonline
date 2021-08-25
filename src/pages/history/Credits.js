@@ -1,3 +1,5 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCoins } from "@fortawesome/free-solid-svg-icons";
 import MoneyOut from "components/icons/MoneyOut";
 import MoneyIn from "components/icons/MoneyIn";
 import CreditModal from "components/CreditModal";
@@ -87,7 +89,10 @@ const Credits = ({ setRefresh }) => {
       )}
       <div className="history__credits">
         <div className="history__credits-title">
-          <h1>{credits}</h1>
+          <h1>
+            {credits}
+            <FontAwesomeIcon icon={faCoins} />
+          </h1>
           <p>Créditos disponibles</p>
         </div>
         <div className="history__credits-add">
