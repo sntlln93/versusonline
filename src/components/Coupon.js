@@ -12,17 +12,20 @@ const Coupon = ({
   handleBet,
 }) => {
   const coupon = useRef(null);
+  const showCouponBtn = useRef(null);
 
   const handleShowCoupon = () => {
     coupon.current.style.display = "block";
+    document.body.style.overflow = "hidden";
   };
 
   const handleHideCoupon = () => {
+    document.body.style.overflow = "scroll";
     coupon.current.style.display = "none";
   };
 
   const handleHideCouponFromBackground = (event) => {
-    if (coupon.current === event.target) {
+    if (coupon.current === event.target && !showCouponBtn.current) {
       handleHideCoupon();
     }
   };
@@ -33,6 +36,7 @@ const Coupon = ({
     <>
       <button
         onClick={handleShowCoupon}
+        ref={showCouponBtn}
         className="btn btn--floating btn--pending coupon-btn--hide-and-show"
       >
         <FontAwesomeIcon icon={faReceipt} />

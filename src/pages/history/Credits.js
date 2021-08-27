@@ -45,15 +45,19 @@ const Credits = ({ setRefresh }) => {
   };
 
   const handleShowAdd = () => {
+    document.body.style.overflow = "hidden";
     setAddModal(true);
     setCheckoutModal(false);
   };
   const handleShowCheckout = () => {
+    document.body.style.overflow = "hidden";
     setCheckoutModal(true);
     setAddModal(false);
   };
 
   const closeModal = () => {
+    document.body.style.overflow = "scroll";
+
     setAddModal(false);
     setCheckoutModal(false);
   };

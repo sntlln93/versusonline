@@ -4,7 +4,13 @@ import { useState } from "react";
 const Details = ({ details }) => {
   const [showDetail, setShowDetail] = useState(null);
   const closeDetail = () => {
+    document.body.style.overflow = "scroll";
     setShowDetail(null);
+  };
+
+  const handleShowDetail = (detailId) => {
+    document.body.style.overflow = "hidden";
+    setShowDetail(detailId);
   };
 
   const getClassName = (detail) => {
@@ -52,7 +58,7 @@ const Details = ({ details }) => {
         {details.length > 0 &&
           details.map((detail) => {
             return (
-              <li key={detail.id} onClick={() => setShowDetail(detail.id)}>
+              <li key={detail.id} onClick={() => handleShowDetail(detail.id)}>
                 <div className="history__detail">
                   <span className="history__detail-description">
                     {detail.title}
