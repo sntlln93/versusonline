@@ -12,6 +12,7 @@ import Login from "./pages/auth/Login";
 import Register from "./pages/auth/Register";
 import Home from "./pages/home";
 import History from "./pages/history";
+import Trophies from "./pages/trophies";
 
 initFontAwesome();
 
@@ -35,6 +36,9 @@ function App() {
             </ProtectedRoute>
             <ProtectedRoute exact path="/history">
               <History />
+            </ProtectedRoute>
+            <ProtectedRoute exact path="/trophies">
+              <Trophies />
             </ProtectedRoute>
           </AuthProvider>
         </NotificationProvider>

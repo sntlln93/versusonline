@@ -1,11 +1,7 @@
 import Logo from "components/Logo";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useLocation, useHistory } from "react-router-dom";
-import {
-  faHome,
-  faHistory,
-  faChartPie,
-} from "@fortawesome/free-solid-svg-icons";
+import { faHome, faHistory, faTrophy } from "@fortawesome/free-solid-svg-icons";
 
 const Sidebar = () => {
   const { pathname } = useLocation();
@@ -42,14 +38,14 @@ const Sidebar = () => {
           </li>
           <li
             className={
-              pathname === "/statistics"
+              pathname === "/trophies"
                 ? "sidebar__element sidebar__element--selected"
                 : "sidebar__element"
             }
-            onClick={() => history.push("statistics")}
+            onClick={() => history.push("trophies")}
           >
-            <FontAwesomeIcon icon={faChartPie} />
-            <span>Estadísticas</span>
+            <FontAwesomeIcon icon={faTrophy} />
+            <span>Logros</span>
           </li>
         </ul>
       </nav>
