@@ -9,7 +9,6 @@ const images = [img1, img2, img3, img4];
 
 const Carousel = () => {
   const { activeSlide, track } = useSlider();
-  console.log(images);
   return (
     <section className="carousel">
       <div className="carousel__track-container">
