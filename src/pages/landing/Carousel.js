@@ -1,42 +1,29 @@
 import { ButtonLink } from "components/Button";
 import useSlider from "hooks/useSlider";
+import img1 from "assets/images/1.jpg";
+import img2 from "assets/images/2.jpg";
+import img3 from "assets/images/3.jpg";
+import img4 from "assets/images/4.jpg";
 
-const images = [
-  "https://picsum.photos/id/135/600/300",
-  "https://picsum.photos/id/136/600/300",
-  "https://picsum.photos/id/137/600/300",
-];
+const images = [img1, img2, img3, img4];
 
 const Carousel = () => {
   const { activeSlide, track } = useSlider();
-
+  console.log(images);
   return (
     <section className="carousel">
       <div className="carousel__track-container">
         <ul className="carousel__track" ref={track}>
-          <li
-            className={`carousel__slide  ${
-              activeSlide === 0 ? "carousel__slide--active" : ""
-            }`}
-          >
-            <img className="carousel__image" src={images[0]} alt="" />
-          </li>
-
-          <li
-            className={`carousel__slide  ${
-              activeSlide === 1 ? "carousel__slide--active" : ""
-            }`}
-          >
-            <img className="carousel__image" src={images[1]} alt="" />
-          </li>
-
-          <li
-            className={`carousel__slide  ${
-              activeSlide === 2 ? "carousel__slide--active" : ""
-            }`}
-          >
-            <img className="carousel__image" src={images[2]} alt="" />
-          </li>
+          {images.map((image, index) => (
+            <li
+              key={index}
+              className={`carousel__slide  ${
+                activeSlide === index ? "carousel__slide--active" : ""
+              }`}
+            >
+              <img className="carousel__image" src={image} alt="" />
+            </li>
+          ))}
         </ul>
       </div>
       <div className="carousel__content">
@@ -49,23 +36,14 @@ const Carousel = () => {
       </div>
 
       <div className="carousel__nav">
-        <button
-          className={`carousel__indicator ${
-            activeSlide === 0 ? "carousel__indicator--active" : ""
-          }`}
-        ></button>
-
-        <button
-          className={`carousel__indicator ${
-            activeSlide === 1 ? "carousel__indicator--active" : ""
-          }`}
-        ></button>
-
-        <button
-          className={`carousel__indicator ${
-            activeSlide === 2 ? "carousel__indicator--active" : ""
-          }`}
-        ></button>
+        {images.map((image, index) => (
+          <button
+            key={index}
+            className={`carousel__indicator ${
+              activeSlide === index ? "carousel__indicator--active" : ""
+            }`}
+          ></button>
+        ))}
       </div>
     </section>
   );
