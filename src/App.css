@@ -834,40 +834,21 @@ summary ~ .header__menu {
 .footer {
   padding: 2rem var(--padding-horizontal) 1rem;
   background-color: var(--secondary-color);
+}
+
+.footer__brand {
   display: flex;
-  flex-direction: column;
-  text-align: center;
+  justify-content: center;
 }
 
-.footer__section img {
-  width: 60%;
+.footer__brand img {
+  width: min(50%, 215px);
 }
 
-.footer__section > small > a {
+.footer__disclaimer > small > a {
   text-decoration: none;
   color: var(--primary-color);
   font-weight: 700;
-}
-
-.footer__section-btn > a {
-  text-decoration: none;
-  color: var(--secondary-color-alt);
-  background-color: var(--terciary-color);
-  border-radius: 10%;
-  transition: background-color 250ms ease-in, color 250ms ease-in;
-  padding: 0.5em 1em;
-}
-
-.footer__section-btn {
-  display: inline-block;
-  border-radius: 50%;
-  cursor: pointer;
-  margin: 1rem 1rem 1rem 0;
-}
-
-.footer__section-btn > a:hover {
-  background-color: var(--primary-color);
-  color: var(--terciary-color);
 }
 
 @media screen and (max-width: 768px) {
@@ -892,10 +873,6 @@ summary ~ .header__menu {
     margin: 0 50%;
     transform: translateX(-50%);
   }
-
-  .footer__section img {
-    width: 50%;
-  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -913,29 +890,12 @@ summary ~ .header__menu {
   .guide__steps-content > img {
     width: 85%;
   }
-
-  .footer {
-    display: flex;
-    flex-direction: row;
-  }
-
-  .footer__section {
-    flex: 1;
-  }
 }
 
 @media screen and (min-width: 1024px) {
   .guide__steps-step {
     --padding: 2rem;
     padding-bottom: 2rem;
-  }
-
-  .footer__section {
-    text-align: left;
-    margin: auto 0 0;
-  }
-  .footer__section small {
-    font-size: 1rem;
   }
 }
 
