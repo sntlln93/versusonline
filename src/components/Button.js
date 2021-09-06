@@ -15,3 +15,15 @@ export const Button = ({ classStyle, text, handleClick }) => {
     </button>
   );
 };
+
+export const IconButton = ({ icon, handleClick, style }) => {
+  return (
+    <button
+      className={`btn`}
+      style={{ padding: ".5em", borderRadius: "5px", ...style }}
+      onClick={handleClick}
+    >
+      {icon}
+    </button>
+  );
+};

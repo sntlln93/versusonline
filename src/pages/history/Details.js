@@ -1,5 +1,8 @@
 import ShowDetail from "./ShowDetail";
 import { useState } from "react";
+import { IconButton } from "components/Button";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 const Details = ({ details }) => {
   const [showDetail, setShowDetail] = useState(null);
@@ -59,6 +62,11 @@ const Details = ({ details }) => {
           details.map((detail) => {
             return (
               <li key={detail.id} onClick={() => handleShowDetail(detail.id)}>
+                <IconButton
+                  handleClick={() => handleShowDetail(detail.id)}
+                  style={{ marginRight: "1em" }}
+                  icon={<FontAwesomeIcon icon={faEye} />}
+                />
                 <div className="history__detail">
                   <span className="history__detail-description">
                     {detail.title}
