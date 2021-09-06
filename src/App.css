@@ -822,10 +822,8 @@ summary ~ .header__menu {
   font-size: var(--section-title-size);
 }
 
-.rules__copy {
-  font-weight: 400;
-  font-size: 1.2rem;
-  margin: 0.3rem 0 2rem 0;
+.rules__body {
+  text-shadow: 5px 5px 30px rgba(0, 0, 0, 1);
 }
 
 /* leagues-landing */

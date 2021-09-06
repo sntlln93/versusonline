@@ -15,10 +15,8 @@ const Guide = () => {
           <div className="guide__steps-content">
             <img src={guide1} alt="" />
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-              beatae quod corporis, possimus obcaecati nisi voluptatem vero
-              vitae ipsa iure quam quaerat, ullam alias repudiandae soluta odio
-              adipisci voluptates rem.
+              Elegí la liga o copa que quieras para ver todos los partidos
+              disponibles.
             </p>
           </div>
         </div>
@@ -31,10 +29,9 @@ const Guide = () => {
           <div className="guide__steps-content">
             <img src={guide2} alt="" />
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-              beatae quod corporis, possimus obcaecati nisi voluptatem vero
-              vitae ipsa iure quam quaerat, ullam alias repudiandae soluta odio
-              adipisci voluptates rem.
+              Eligiendo una liga o copa vas a ver toda la oferta de partidos que
+              tenemos para vos. Jugá eligiendo la opción que más te guste y se
+              abrirá el cupón para que puedas completarlo.
             </p>
           </div>
         </div>
@@ -47,10 +44,8 @@ const Guide = () => {
           <div className="guide__steps-content">
             <img src={guide3} alt="" />
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam
-              beatae quod corporis, possimus obcaecati nisi voluptatem vero
-              vitae ipsa iure quam quaerat, ullam alias repudiandae soluta odio
-              adipisci voluptates rem.
+              ¡En el cupón vas a ver tus jugadas y la cuota final. Sólo te queda
+              poner tus créditos en juego y ¡listo!
             </p>
           </div>
         </div>
