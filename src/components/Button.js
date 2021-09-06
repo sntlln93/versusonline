@@ -19,8 +19,14 @@ export const Button = ({ classStyle, text, handleClick }) => {
 export const IconButton = ({ icon, handleClick, style }) => {
   return (
     <button
-      className={`btn`}
-      style={{ padding: ".5em", borderRadius: "5px", ...style }}
+      className="btn"
+      style={{
+        padding: ".5em",
+        borderRadius: "5px",
+        color: "white",
+        backgroundColor: "var(--info-color)",
+        ...style,
+      }}
       onClick={handleClick}
     >
       {icon}
