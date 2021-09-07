@@ -31,7 +31,13 @@ const Credits = ({ setRefresh }) => {
         notification.add([infoMessage]);
         setAddModal(false);
       })
-      .catch(() => notification.add([errorMessage]));
+      .catch((error) => {
+        const errorMessage = {
+          message: error.response.data.message,
+          type: "error",
+        };
+        notification.add([errorMessage]);
+      });
   };
 
   const onCheckout = (body) => {
@@ -41,7 +47,13 @@ const Credits = ({ setRefresh }) => {
         notification.add([infoMessage]);
         setCheckoutModal(false);
       })
-      .catch(() => notification.add([errorMessage]));
+      .catch((error) => {
+        const errorMessage = {
+          message: error.response.data.message,
+          type: "error",
+        };
+        notification.add([errorMessage]);
+      });
   };
 
   const handleShowAdd = () => {
@@ -126,9 +138,4 @@ export default Credits;
 const infoMessage = {
   message: "Solicitud registrada con éxito. A la espera de acreditación.",
   type: "info",
-};
-
-const errorMessage = {
-  message: "Algo salió mal. Si el error persiste, comunicate con nosotros.",
-  type: "error",
 };
