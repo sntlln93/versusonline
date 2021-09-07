@@ -9,7 +9,7 @@ const useCreditForm = () => {
 
   const [amount, setAmount] = useState(0);
   const [formattedAmount, setFormattedAmount] = useState("$ 0");
-  const [phone, setPhone] = useState(auth.getUser().phone);
+  const [phone, setPhone] = useState(auth.getUser().phone || "");
 
   useEffect(() => {
     const options = { style: "currency", currency: "ARS" };
