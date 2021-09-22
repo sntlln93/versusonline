@@ -11,6 +11,7 @@ import useCoupon from "hooks/useCoupon";
 const History = () => {
   const [details, setDetails] = useState([]);
   const [shouldQueryAgain, setShouldQueryAgain] = useState(false);
+  const [shouldReverse, setShouldReverse] = useState(false);
   const auth = useAuth();
 
   const {
@@ -38,6 +39,12 @@ const History = () => {
       .catch((error) => console.error(error));
   }, [shouldQueryAgain, auth]);
 
+  useEffect(() => {
+    setDetails(details.reverse());
+  }, [shouldReverse, details]);
+
+  const toogleDetailsOrder = () => setShouldReverse(!shouldReverse);
+
   return (
     <div className="dashboard">
       <Sidebar />
@@ -46,7 +53,10 @@ const History = () => {
         <div className="content">
           <section className="history">
             <Credits setRefresh={setShouldQueryAgain} />
-            <Details details={details} />
+            <Details
+              details={details}
+              toogleDetailsOrder={toogleDetailsOrder}
+            />
           </section>
           <Coupon
             selectedGames={selectedGames}

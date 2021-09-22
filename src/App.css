@@ -979,6 +979,12 @@ summary ~ .header__menu {
   fill: var(--terciary-color);
 }
 
+.history__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
 .history__details {
   margin: 2rem auto;
   list-style: none;

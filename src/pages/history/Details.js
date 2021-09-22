@@ -4,8 +4,10 @@ import { IconButton } from "components/Button";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye } from "@fortawesome/free-solid-svg-icons";
 
-const Details = ({ details }) => {
+const Details = ({ details, toogleDetailsOrder }) => {
   const [showDetail, setShowDetail] = useState(null);
+  const [isFiltered, setIsFiltered] = useState(false);
+
   const closeDetail = () => {
     document.body.style.overflow = "scroll";
     setShowDetail(null);
@@ -46,6 +48,11 @@ const Details = ({ details }) => {
     }
   };
 
+  const onFilter = () => {
+    setIsFiltered(!isFiltered);
+    toogleDetailsOrder();
+  };
+
   return (
     <>
       {showDetail && (
@@ -55,8 +62,21 @@ const Details = ({ details }) => {
           getClassName={getClassName}
         />
       )}
-      <h2>Movimientos</h2>
-
+      <div className="history__header">
+        <h2>Movimientos</h2>
+        <div>
+          Ordenar por
+          <IconButton
+            text={isFiltered ? "más antiguos" : "más recientes"}
+            style={{
+              marginLeft: ".5em",
+              border: "1px solid var(--transparent-border-color)",
+              backgroundColor: "var(--secondary-color-alt)",
+            }}
+            handleClick={onFilter}
+          />
+        </div>
+      </div>
       <ul className="history__details">
         {details.length > 0 &&
           details.map((detail) => {

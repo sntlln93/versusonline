@@ -16,11 +16,12 @@ export const Button = ({ classStyle, text, handleClick }) => {
   );
 };
 
-export const IconButton = ({ icon, handleClick, style }) => {
+export const IconButton = ({ icon, handleClick, style, text }) => {
   return (
     <button
       className="btn"
       style={{
+        textTransform: "none",
         padding: ".5em",
         borderRadius: "5px",
         color: "white",
@@ -29,6 +30,7 @@ export const IconButton = ({ icon, handleClick, style }) => {
       }}
       onClick={handleClick}
     >
+      {text}
       {icon}
     </button>
   );
