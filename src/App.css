@@ -976,7 +976,7 @@ summary ~ .header__menu {
 }
 
 .history__credits-icon:hover .history__credits-icon-draw {
-  fill: var(--bg-color);
+  fill: var(--terciary-color);
 }
 
 .history__details {
