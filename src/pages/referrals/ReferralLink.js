@@ -31,7 +31,7 @@ const ReferralLink = () => {
         <div className={styles.btn + " " + styles.btnWhatsapp}>
           <a
             target="_blank"
-            href={`https://wa.me/send?text=${link}`}
+            href={`https://api.whatsapp.com/send/?phone&text=${link}`}
             rel="noreferrer"
           >
             <FontAwesomeIcon size="lg" icon={faWhatsapp} />
