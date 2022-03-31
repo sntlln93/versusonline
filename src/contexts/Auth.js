@@ -80,14 +80,15 @@ const useAuthProvider = () => {
         },
       })
       .then((response) => {
-        console.log(response);
-        if (response.status === 202) {
-          localStorage.clear();
-          history.push("/login");
-        }
         notification.add([{ message: response.data.message, type: "success" }]);
       })
-      .catch((error) => console.log(error.response.data.message));
+      .catch((error) => {
+        if (error.response) console.log(error.response.data.message);
+        else console.log(error);
+      });
+
+    history.push("/login");
+    localStorage.clear();
   };
 
   return { getUser, login, signup, signout };
