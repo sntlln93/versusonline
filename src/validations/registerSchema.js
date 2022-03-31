@@ -19,7 +19,7 @@ const registerSchema = yup.object().shape({
   password: yup.string().min(8).label("contraseña").required(),
   name: yup.string().label("nombre").required(),
   lastname: yup.string().label("apellido").required(),
-  phone: yup.string().label("número de teléfono").nullable(true),
+  phone: yup.string().label("número de teléfono").required(),
 });
 
 export default registerSchema;

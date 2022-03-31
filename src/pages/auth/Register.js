@@ -1,5 +1,6 @@
 import Logo from "components/Logo";
 import useCustomForm from "hooks/useCustomForm";
+import useQueryString from "hooks/useQueryString";
 import { Link } from "react-router-dom";
 import { useAuth } from "contexts/Auth";
 import { Redirect } from "react-router-dom";
@@ -13,12 +14,16 @@ const hints = {
 const Register = () => {
   const { register, handleSubmit, errors } = useCustomForm(registerSchema);
   const auth = useAuth();
+  const query = useQueryString();
 
   if (auth.getUser()) {
     return <Redirect to="/home" />;
   }
 
-  const onSubmit = (data) => auth.signup(data);
+  const onSubmit = (data) => {
+    data.referred_by = parseInt(query.get("refby"));
+    auth.signup(data);
+  };
 
   return (
     <main>
@@ -58,9 +63,7 @@ const Register = () => {
               data-tooltip={hints.phone}
               autoComplete="off"
             >
-              <label htmlFor="phone">
-                Número de teléfono <em>(opcional)</em>
-              </label>
+              <label htmlFor="phone">Número de teléfono</label>
               <input
                 title={hints.phone}
                 type="tel"
