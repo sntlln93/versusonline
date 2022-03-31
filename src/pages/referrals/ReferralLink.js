@@ -1,19 +1,14 @@
-import { useState, useEffect } from "react";
-
 import styles from "./referrals.module.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { faCopy } from "@fortawesome/free-regular-svg-icons";
 
 import { useNotification } from "contexts/Notifications";
+import { useAuth } from "contexts/Auth";
 
 const ReferralLink = () => {
-  const [link, setLink] = useState("");
-
-  useEffect(() => {
-    setLink("https://versusbetonline.com/join/434saf4d4a87s");
-  }, []);
-
+  const { getUser } = useAuth();
+  const link = `${process.env.REACT_APP_URL}/register?refBy=${getUser().id}`;
   const notification = useNotification();
 
   const onCopy = () => {
