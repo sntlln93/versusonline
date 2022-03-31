@@ -61,6 +61,7 @@ const useAuthProvider = () => {
         ]);
       })
       .catch((error) => {
+        console.log(error);
         const errors = Object.values(error.response.data.messages).map(
           (error) => {
             return { message: error[0], type: "error" };

@@ -22,7 +22,11 @@ const Sidebar = () => {
             route="/history"
           />
           <SidebarElement icon={faTrophy} name="Logros" route="/trophies" />
-          <SidebarElement icon={faUserFriends} name="Amigos" route="/friends" />
+          <SidebarElement
+            icon={faUserFriends}
+            name="Referidos"
+            route="/referrals"
+          />
         </ul>
       </nav>
     </section>
