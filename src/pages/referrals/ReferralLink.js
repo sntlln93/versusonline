@@ -8,7 +8,7 @@ import { useAuth } from "contexts/Auth";
 
 const ReferralLink = () => {
   const { getUser } = useAuth();
-  const link = `${process.env.REACT_APP_URL}/register?refBy=${getUser().id}`;
+  const link = `${process.env.REACT_APP_URL}/register?refby=${getUser().id}`;
   const notification = useNotification();
 
   const onCopy = () => {
