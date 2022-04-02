@@ -1,3 +1,5 @@
+import styles from "./styles/sidebar.module.css";
+
 import Logo from "components/Logo";
 import { SidebarElement } from "./SidebarElement";
 import {
@@ -9,12 +11,12 @@ import {
 
 const Sidebar = () => {
   return (
-    <section className="sidebar">
-      <div className="sidebar__logo">
+    <section className={styles.sidebar}>
+      <div className={styles.sidebarLogo}>
         <Logo />
       </div>
       <nav>
-        <ul className="sidebar__elements">
+        <ul className={styles.sidebarElements}>
           <SidebarElement icon={faHome} name="Inicio" route="/home" />
           <SidebarElement
             icon={faHistory}
