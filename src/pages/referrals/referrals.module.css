@@ -6,7 +6,7 @@
   background-color: var(--secondary-color-alt);
   margin: auto;
   border: 1px solid var(--transparent-border-color);
-  padding: 2em;
+  padding: 1rem;
   border-radius: var(--border-radius);
   width: 100%;
   text-align: center;
@@ -25,6 +25,16 @@
   width: 100%;
 }
 
+@media screen and (max-width: 670px) {
+  .referralLink {
+    margin-bottom:.2rem;
+  }
+  .referral {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
 .referralLink input {
   border: none;
   padding: 1rem;
@@ -41,6 +51,12 @@
   outline: none;
 }
 
+.shareButtons {
+  gap: 0.2rem;
+  display: flex;
+  align-self: end;
+}
+
 .btn {
   display: flex;
   justify-content: center;
@@ -49,6 +65,10 @@
   width: var(--size);
   transition: background-color 250ms ease-in-out;
   cursor: pointer;
+}
+
+.btnShare {
+  background-color: var(--warning-color);
 }
 
 .btnWhatsapp {
