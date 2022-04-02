@@ -31,7 +31,7 @@ const ReferralLink = () => {
   };
 
   useEffect(() => {
-    if ("share" in navigator) setShowShare(true);
+    if (navigator.canShare()) setShowShare(true);
   }, []);
 
   const onCopy = () => {
