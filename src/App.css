@@ -1075,7 +1075,7 @@ summary ~ .header__menu {
   height: calc(100vh);
   width: 100%;
   display: grid;
-  grid-template-columns: 0.3fr 1fr;
+  grid-template-columns: .25fr 1fr;
   font-size: 1.2rem;
 }
 
@@ -1084,53 +1084,6 @@ summary ~ .header__menu {
   grid-template-columns: 1fr 0.4fr;
 }
 
-.dashboard .sidebar {
-  position: sticky;
-  background-color: var(--secondary-color-alt);
-  z-index: 1;
-  padding-top: calc(var(--padding-vertical) / 2);
-}
-
-.sidebar__logo {
-  width: 100%;
-  padding-inline: calc(var(--padding-horizontal) / 2);
-}
-
-.sidebar__logo > img {
-  width: 100%;
-}
-.sidebar > h2 {
-  padding-inline: calc(var(--padding-horizontal) / 2);
-}
-
-.sidebar > nav {
-  padding-left: calc(var(--padding-horizontal) / 2);
-}
-
-.sidebar__elements {
-  list-style: none;
-}
-
-.sidebar__element {
-  cursor: pointer;
-  padding: 0.8rem;
-  border-radius: var(--border-radius);
-  margin-bottom: 5px;
-}
-
-.sidebar__element:hover,
-.sidebar__element--selected {
-  background-color: var(--primary-color-alt);
-}
-
-.sidebar__element a {
-  color: var(--terciary-color);
-  text-decoration: none;
-}
-
-.sidebar__element > svg {
-  margin-right: 1rem;
-}
 
 .dashboard .bets {
   --margin-bottom: 2rem;
@@ -1402,31 +1355,6 @@ summary ~ .header__menu {
     padding-bottom: 4rem;
   }
 
-  .dashboard .sidebar {
-    position: fixed;
-    padding: 0;
-    width: 100%;
-    bottom: 0;
-  }
-  .dashboard .sidebar > nav {
-    padding: 0;
-  }
-
-  .sidebar__elements {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-  }
-
-  .sidebar__element {
-    border-radius: 0;
-    text-align: center;
-    margin-bottom: 0;
-  }
-
-  .sidebar__logo {
-    display: none;
-  }
-
   .dashboard > main > .content {
     display: block;
   }
@@ -1500,15 +1428,6 @@ summary ~ .header__menu {
 @media screen and (max-width: 500px) {
   .game__odds-odd {
     padding-inline: 5%;
-  }
-}
-@media screen and (max-width: 550px) {
-  .sidebar__element {
-    font-size: 1.2rem;
-  }
-
-  .sidebar__element span {
-    display: none;
   }
 }
 
