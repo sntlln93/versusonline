@@ -31,8 +31,8 @@ const ReferralLink = () => {
   };
 
   useEffect(() => {
-    if (navigator.canShare()) setShowShare(true);
-  }, []);
+    if (navigator.canShare({ url: link })) setShowShare(true);
+  }, [link]);
 
   const onCopy = () => {
     navigator.clipboard.writeText(link);
@@ -51,18 +51,18 @@ const ReferralLink = () => {
           <input onClick={onCopy} type="text" readOnly={true} value={link} />
         </div>
 
-        {showShare && (
-          <div
-            onClick={onShare}
-            className={styles.btn + " " + styles.btnWhatsapp}
-          >
-            <button>
-              <FontAwesomeIcon size="lg" icon={faShareAlt} />
-            </button>
-          </div>
-        )}
+        <div className={styles.shareButtons}>
+          {showShare && (
+            <div
+              onClick={onShare}
+              className={styles.btn + " " + styles.btnShare}
+            >
+              <button>
+                <FontAwesomeIcon size="lg" icon={faShareAlt} />
+              </button>
+            </div>
+          )}
 
-        {!showShare && (
           <div className={styles.btn + " " + styles.btnWhatsapp}>
             <a
               target="_blank"
@@ -72,12 +72,12 @@ const ReferralLink = () => {
               <FontAwesomeIcon size="lg" icon={faWhatsapp} />
             </a>
           </div>
-        )}
 
-        <div onClick={onCopy} className={styles.btn + " " + styles.btnCopy}>
-          <button>
-            <FontAwesomeIcon size="lg" icon={faCopy} />
-          </button>
+          <div onClick={onCopy} className={styles.btn + " " + styles.btnCopy}>
+            <button>
+              <FontAwesomeIcon size="lg" icon={faCopy} />
+            </button>
+          </div>
         </div>
       </div>
     </div>
